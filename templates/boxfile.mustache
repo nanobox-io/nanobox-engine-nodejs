@@ -1,0 +1,18 @@
+build:
+  lib_dirs:
+    - node_modules
+{{#has_bower}}
+    - bower_components
+{{/has_bower}}
+{{#has_web}}
+web1:
+  ports:
+    - 80:8080
+    - 443:8080
+{{#npm}}
+  exec: npm start
+{{/npm}}
+{{#server}}
+  exec: node server.js
+{{/server}}
+{{/has_web}}

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# source the Nos framework
+. /opt/nos/common.sh
+
+# initialize Nos with the original arguments
+nos_init $@
+
+# source common lib
+. ${engine_lib_dir}/common.sh
+
+install_runtime
+npm_rebuild
+
+install_bower
+
+npm_install
+bower_install
+
+set_runtime

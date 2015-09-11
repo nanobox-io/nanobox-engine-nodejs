@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# source the Nos framework
+. /opt/nos/common.sh
+
+# initialize Nos with the original arguments
+nos_init $@
+
+# source common lib
+. ${engine_lib_dir}/common.sh
+
+run_hooks "before"
+
+run_hooks "exec"
+
+run_hooks "after"
+
+print_bullet "Copying release into live code directory..."
+rsync -a $(payload 'code_dir')/ $(payload 'live_dir')

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# source the Nos framework
+. /opt/nos/common.sh
+
+# initialize Nos with the original arguments
+nos_init $@
+
+# source common lib
+. ${engine_lib_dir}/common.sh
