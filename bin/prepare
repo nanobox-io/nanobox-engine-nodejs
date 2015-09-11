@@ -14,6 +14,8 @@ npm_rebuild
 
 install_bower
 
+persist_evars
+
 npm_install
 bower_install
 
