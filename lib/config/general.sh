@@ -57,13 +57,13 @@ npm_install() {
 }
 
 has_web() {
-  [[ "$(use_npm_start)" = "true" || "$(use_server_js)" = "true" ]] echo "true" || echo "false"
+  [[ "$(use_npm_start)" = "true" || "$(use_server_js)" = "true" ]] && echo "true" || echo "false"
 }
 
 use_npm_start() {
-  [[ -f $(code_dir)/package.json && "$(cat $(code_dir)/package.json | shon)" =~ ^scripts_start ]] echo "true" || echo "false"
+  [[ -f $(code_dir)/package.json && "$(cat $(code_dir)/package.json | shon)" =~ ^scripts_start ]] && echo "true" || echo "false"
 }
 
 use_server_js() {
-  [[ -f $(code_dir)/server.js && $(use_npm_start) = "false" ]] echo "true" || echo "false"
+  [[ -f $(code_dir)/server.js && $(use_npm_start) = "false" ]] && echo "true" || echo "false"
 }

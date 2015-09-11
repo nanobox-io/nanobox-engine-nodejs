@@ -1,0 +1,14 @@
+{
+  "name": "simple-nodejs",
+  "version": "1.0.0",
+  "description": "simple nodejs test",
+  "main": "server.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "braxton",
+  "license": "MPL-2.0",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}

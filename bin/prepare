@@ -18,3 +18,5 @@ npm_install
 bower_install
 
 set_runtime
+
+exit 0
