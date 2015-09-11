@@ -1,3 +1,6 @@
+# -*- mode: bash; tab-width: 2; -*-
+# vim: ts=2 sw=2 ft=bash noet
+
 create_boxfile() {
   template \
     "boxfile.mustache" \
@@ -49,11 +52,11 @@ check_runtime() {
 }
 
 npm_rebuild() {
-  [[ "$(check_runtime)" = "false" ]] && (cd $(code_dir); run_process "npm rebuild" "npm rebuild")
+  [[ "$(check_runtime)" = "false" ]] && (cd $(code_dir); run_subprocess "npm rebuild" "npm rebuild")
 }
 
 npm_install() {
-  [[ -f $(code_dir)/package.json ]] && (cd $(code_dir); run_process "npm install" "npm install .")
+  [[ -f $(code_dir)/package.json ]] && (cd $(code_dir); run_subprocess "npm install" "npm install .")
 }
 
 has_web() {
