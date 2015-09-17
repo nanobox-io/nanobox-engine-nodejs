@@ -11,9 +11,17 @@ To detect a Node.js app, this engine looks for a `package.json`. If that exists,
 - If the version of node has changed between deploys, the engine runs `npm rebuild`
 
 ## Configuration Options
-This engine exposes configuration options through the [Boxfile](http://docs.nanobox.io/boxfile/), a yaml config file used to provision and configure your app's infrastructure when using Nanobox. 
+This engine exposes configuration options through the [Boxfile](http://docs.nanobox.io/boxfile/), a yaml config file used to provision and configure your app's infrastructure when using Nanobox.
 
-##### `runtime`
+#### Overview of Boxfile Configuration Options
+```yaml
+build:
+  runtime: nodejs-0.12
+```
+
+---
+
+#### runtime
 Specifies which Node.js runtime and version to use. The following runtimes are available:
 
 - nodejs-0.8
@@ -25,3 +33,8 @@ Specifies which Node.js runtime and version to use. The following runtimes are a
 build:
   runtime: nodejs-0.12
 ```
+
+---
+
+## Help & Support
+This is a generic (non-framework-specific) Node.js engine provided by [Nanobox](http://nanobox.io). If you need help with this engine, you can reach out to us in the [#nanobox IRC channel](http://webchat.freenode.net/?channels=nanobox). If you are running into an issue with the engine, feel free to [create a new issue on this project](https://github.com/pagodabox/nanobox-engine-nodejs/issues/new).
