@@ -1,0 +1,1 @@
+{"code_dir":"/opt/code","deploy_dir":"/data","live_dir":"/code","cache_dir":"/mnt/cache","etc_dir":"/data/etc","env_dir":"/data/etc/env.d","app":"nodejs-test","env":{"APP_NAME":"nodejs-test"},"dns":["nodejs-test.dev"],"port":"8080","boxfile":null,"platform":"local"}
