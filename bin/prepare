@@ -30,6 +30,6 @@ npm_install
 bower_install
 
 # set the node.js runtime in cache
-set_runtime
+set_js_runtime
 
 exit 0

@@ -9,8 +9,8 @@ js_runtime() {
 }
 
 needs_js_runtime() {
-	[[ -f $(code_dir)/package.json ]] && echo "true"
-	[[ -f $(code_dir)/bower.json ]] && echo "true"
+	[[ -f $(code_dir)/package.json ]] && echo "true" || >&2 echo "Could not find $(code_dir)/package.json"
+	[[ -f $(code_dir)/bower.json ]] && echo "true" || >&2 echo "Could not find $(code_dir)/bower.json"
 	echo "false"
 }
 
@@ -28,7 +28,7 @@ check_js_runtime() {
 }
 
 npm_rebuild() {
-  [[ "$(check_runtime)" = "false" ]] && (cd $(code_dir); run_subprocess "npm rebuild" "npm rebuild")
+  [[ "$(check_js_runtime)" = "false" ]] && (cd $(code_dir); run_subprocess "npm rebuild" "npm rebuild")
 }
 
 npm_install() {
