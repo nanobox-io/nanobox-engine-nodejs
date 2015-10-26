@@ -9,8 +9,8 @@ js_runtime() {
 }
 
 needs_js_runtime() {
-	[[ -f $(code_dir)/package.json ]] && echo "true" || >&2 echo "Could not find $(code_dir)/package.json"
-	[[ -f $(code_dir)/bower.json ]] && echo "true" || >&2 echo "Could not find $(code_dir)/bower.json"
+	[[ -f $(code_dir)/package.json ]] && echo "true" && return
+	[[ -f $(code_dir)/bower.json ]] && echo "true" && return
 	echo "false"
 }
 
