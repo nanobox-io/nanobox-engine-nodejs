@@ -12,7 +12,7 @@ nos_init $@
 . ${engine_lib_dir}/common.sh
 
 # install node.js or io.js
-install_runtime
+install_js_runtime
 
 # run npm rebuild only if the runtime has changed
 npm_rebuild
