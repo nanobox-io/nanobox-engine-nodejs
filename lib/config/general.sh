@@ -13,6 +13,7 @@ boxfile_payload() {
   _has_web=$(has_web)
   _use_npm_start=$(use_npm_start)
   _use_server_js=$(use_server_js)
+  print_bullet "Detecting settings"
   if [[ "$_has_bower" = "true" ]]; then
     print_bullet_sub "Adding lib_dirs for bower"
   fi
