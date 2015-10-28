@@ -11,6 +11,8 @@ nos_init $@
 # source common lib
 . ${engine_lib_dir}/common.sh
 
+print_process_start "Installing packages"
+
 # install node.js or io.js
 install_runtime
 

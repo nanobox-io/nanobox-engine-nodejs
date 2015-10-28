@@ -9,7 +9,23 @@ create_boxfile() {
 }
 
 boxfile_payload() {
-    cat <<-END
+  _has_bower=$(has_bower)
+  _has_web=$(has_web)
+  _use_npm_start=$(use_npm_start)
+  _use_server_js=$(use_server_js)
+  if [[ "$_has_bower" = "true" ]]; then
+    print_bullet_sub "Adding lib_dirs for bower"
+  fi
+  if [[ "$_has_web" = "true" ]]; then
+    if [[ "$_use_npm_start" = "true" ]]; then
+      print_bullet_sub "Using 'npm start' to start process"
+    elif [[ "$_use_server_js" = "true" ]]; then
+      print_bullet_sub "Using 'node server.js' to start process"
+    fi
+  else
+    print_warning "Could not identify a way to start a web process. Not creating a web process."
+  fi
+  cat <<-END
 {
   "has_bower": $(has_bower),
   "has_web": $(has_web),
