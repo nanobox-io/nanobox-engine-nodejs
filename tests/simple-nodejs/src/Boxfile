@@ -1,5 +1,5 @@
 build:
-    stability: alpha
+    stability: beta
     engine: ../../../../nanobox-engine-nodejs
 web1:
-    stability: alpha
+    stability: stable
