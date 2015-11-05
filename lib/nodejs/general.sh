@@ -1,14 +1,14 @@
 # -*- mode: bash; tab-width: 2; -*-
 # vim: ts=2 sw=2 ft=bash noet
 
-create_boxfile() {
+nodejs_create_boxfile() {
   nos_template \
     "boxfile.mustache" \
     "-" \
-    "$(boxfile_payload)"
+    "$(nodejs_boxfile_payload)"
 }
 
-boxfile_payload() {
+nodejs_boxfile_payload() {
   _has_bower=$(nodejs_has_bower)
   _has_web=$(nodejs_has_web)
   _use_npm_start=$(nodejs_use_npm_start)
@@ -24,7 +24,7 @@ boxfile_payload() {
       nos_print_bullet_sub "Using 'node server.js' to start process"
     fi
   else
-    print_warning "Could not identify a way to start a web process. Not creating a web process."
+    nos_print_warning "Could not identify a way to start a web process. Not creating a web process."
   fi
   cat <<-END
 {
