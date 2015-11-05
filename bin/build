@@ -22,4 +22,4 @@ nos_run_hooks "after"
 
 # copy the source code into the live directory
 nos_print_bullet "Copying release into live code directory..."
-rsync -a $(payload 'code_dir')/ $(payload 'live_dir')
+rsync -a $(nos_code_dir)/ $(nos_live_dir)
