@@ -1,5 +1,5 @@
 name: 'nodejs'
-version: '0.1.3'
+version: '0.1.4'
 summary: 'Nanobox engine for generic Node.js deployments'
 language: 'nodejs'
 stability: 'stable'
