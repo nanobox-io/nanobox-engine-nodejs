@@ -37,7 +37,7 @@ END
 }
 
 nodejs_runtime() {
-  echo $(nos_validate "$(nos_payload "boxfile_nodejs_runtime")" "string" "nodejs-0.12")
+  echo $(nos_validate "$(nos_payload "boxfile_nodejs_runtime")" "string" "nodejs-4.2")
 }
 
 nodejs_install_runtime() {

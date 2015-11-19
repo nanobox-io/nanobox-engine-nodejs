@@ -21,7 +21,7 @@ build:
 
 ---
 
-#### runtime
+#### nodejs_runtime
 Specifies which Node.js runtime and version to use. The following runtimes are available:
 
 - nodejs-0.8
@@ -32,7 +32,7 @@ Specifies which Node.js runtime and version to use. The following runtimes are a
 
 ```yaml
 build:
-  runtime: nodejs-0.12
+  nodejs_runtime: nodejs-4.2
 ```
 
 ---
