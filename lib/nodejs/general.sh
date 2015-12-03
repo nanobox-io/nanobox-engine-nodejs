@@ -66,7 +66,7 @@ nodejs_has_web() {
 }
 
 nodejs_use_npm_start() {
-  [[ -f $(nos_code_dir)/package.json && "$(cat $(nos_code_dir)/package.json | shon)" =~ ^scripts_start ]] && echo "true" || echo "false"
+  [[ -f $(nos_code_dir)/package.json && "$(cat $(nos_code_dir)/package.json | shon)" =~ scripts_start_value ]] && echo "true" || echo "false"
 }
 
 nodejs_use_server_js() {
