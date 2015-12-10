@@ -27,7 +27,11 @@ Specifies which Node.js runtime and version to use. The following runtimes are a
 - nodejs-0.8
 - nodejs-0.10
 - nodejs-0.12
+- nodejs-4.0
+- nodejs-4.1
 - nodejs-4.2
+- nodejs-5.0
+- nodejs-5.1
 - iojs-2.3
 
 ```yaml
