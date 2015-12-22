@@ -37,7 +37,9 @@ END
 }
 
 nodejs_runtime() {
-  echo $(nos_validate "$(nos_payload "boxfile_nodejs_runtime")" "string" "nodejs-4.2")
+  echo $(nos_validate \
+    "$(nos_payload "boxfile_nodejs_runtime")" \
+    "string" "nodejs-4.2")
 }
 
 nodejs_install_runtime() {
@@ -45,30 +47,44 @@ nodejs_install_runtime() {
 }
 
 nodejs_set_runtime() {
-  [[ -d $(nos_code_dir)/node_modules ]] && echo "$(nodejs_runtime)" > $(nos_code_dir)/node_modules/runtime
+  [[ -d $(nos_code_dir)/node_modules ]] \
+    && echo "$(nodejs_runtime)" > $(nos_code_dir)/node_modules/runtime
 }
 
 nodejs_check_runtime() {
-  [[ ! -d $(nos_code_dir)/node_modules ]] && echo "true" && return
-  [[ "$(cat $(nos_code_dir)/node_modules/runtime)" =~ ^$(nodejs_runtime)$ ]] && echo "true" || echo "false"
+  [[ ! -d $(nos_code_dir)/node_modules ]] \
+    && echo "true" && return
+
+  [[ "$(cat $(nos_code_dir)/node_modules/runtime)" =~ ^$(nodejs_runtime)$ ]] \
+    && echo "true" || echo "false"
 }
 
 nodejs_npm_rebuild() {
-  [[ "$(nodejs_check_runtime)" = "false" ]] && (cd $(nos_code_dir); nos_run_subprocess "npm rebuild" "npm rebuild")
+  if [[ "$(nodejs_check_runtime)" = "false" ]]; then
+    ( cd $(nos_code_dir)
+      nos_run_subprocess "rebuilding npm modules" "npm rebuild" )
+  fi
 }
 
 nodejs_npm_install() {
-  [[ -f $(nos_code_dir)/package.json ]] && (cd $(nos_code_dir); nos_run_subprocess "npm install" "npm install .")
+  if [[ -f $(nos_code_dir)/package.json ]]; then
+    ( cd $(nos_code_dir)
+      nos_run_subprocess "installing npm modules" "npm install" )
+  fi
 }
 
 nodejs_has_web() {
-  [[ "$(nodejs_use_npm_start)" = "true" || "$(nodejs_use_server_js)" = "true" ]] && echo "true" || echo "false"
+  [[ "$(nodejs_use_npm_start)" = "true" \
+    || "$(nodejs_use_server_js)" = "true" ]] && echo "true" || echo "false"
 }
 
 nodejs_use_npm_start() {
-  [[ -f $(nos_code_dir)/package.json && "$(cat $(nos_code_dir)/package.json | shon)" =~ scripts_start_value ]] && echo "true" || echo "false"
+  [[ -f $(nos_code_dir)/package.json \
+    && "$(cat $(nos_code_dir)/package.json | shon)" =~ scripts_start_value ]] \
+      && echo "true" || echo "false"
 }
 
 nodejs_use_server_js() {
-  [[ -f $(nos_code_dir)/server.js && $(nodejs_use_npm_start) = "false" ]] && echo "true" || echo "false"
+  [[ -f $(nos_code_dir)/server.js && $(nodejs_use_npm_start) = "false" ]] \
+    && echo "true" || echo "false"
 }

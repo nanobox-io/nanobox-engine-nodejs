@@ -55,11 +55,10 @@ done
 nodejs_prepare_asset_runtime() {
   # First, we need to see if this app will require an asset compilation.
   # If not, let's exit early.
-  [[ "$(_nodejs_is_asset_compilation_required)" = "false" ]] \
+  [[ "$(_nodejs_detect_asset_requirements)" = "false" ]] \
     && echo "false" && return
 
   # Well we'll certainly need nodejs, so let's install that now
-  # todo: message about why we're installing nodejs
   nodejs_install_runtime
 
   # defer to the plugins for installation
@@ -77,7 +76,6 @@ nodejs_configure_asset_environment() {
     && echo "false" && return
 
   # npm install
-  # todo: message about why we're running npm install
   nodejs_npm_install
 
   # defer to the plugins for configuration
@@ -109,6 +107,35 @@ nodejs_detect_asset_lib_dirs() {
 
   # now we'll defer the rest to to the specific plugins
   _nodejs_delegate_to_plugins "detect_lib_dirs"
+}
+
+# Iterate through the assets plugins and inform the user of requirements
+_nodejs_detect_asset_requirements() {
+  # requirement state, set to true if any return "true"
+  required="false"
+
+  nos_print_bullet "Detecting javascript requirements"
+
+  # first and foremost, check for package.json
+  if [[ -f $(nos_code_dir)/package.json ]]; then
+    required="true"
+    nos_print_bullet_sub "found package.json"
+  fi
+
+  # iterate through all of the asset plugins to check for requirements
+  for plugin in "${nodejs_asset_plugins[@]}"; do
+    if [[ "$(nodejs_detect_${plugin}_requirements)" = "true" ]]; then
+      required="true"
+    fi
+  done
+
+  # if nothing has detected javascript at this point, we won't
+  # be engaging further
+  if [[ "${required}" = "false" ]]; then
+    nos_print_bullet_sub "no javascript integration required"
+  fi
+
+  echo $required
 }
 
 # Determine if the application will even need an asset compilation
