@@ -54,7 +54,7 @@ nodejs_report_boxfile_web() {
 
 # Set a port that the application can use to bind to
 nodejs_persist_web_port_evar() {
-  persist_evar "PORT" "8080"
+  nos_persist_evar "PORT" "8080"
 }
 
 # Copy the code into the live directory which will be used to run the app
