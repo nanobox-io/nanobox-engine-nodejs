@@ -41,7 +41,7 @@ nodejs_detect_brunch_requirements() {
   if [[ -f $(nos_code_dir)/config.coffee ]]; then
     nos_print_bullet_sub "found config.coffee"
     echo "true"
-  elif [[ -f $(nos_code_dir)/config.js ]]
+  elif [[ -f $(nos_code_dir)/config.js ]]; then
     nos_print_bullet_sub "found config.js"
     echo "true"
   else
