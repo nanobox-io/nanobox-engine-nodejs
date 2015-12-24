@@ -17,7 +17,7 @@ nodejs_brunch_prepare() {
 
 # nothing to configure
 nodejs_brunch_configure() {
- echo "false"
+  return
 }
 
 #

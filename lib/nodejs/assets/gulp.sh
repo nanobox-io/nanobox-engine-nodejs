@@ -17,7 +17,7 @@ nodejs_gulp_prepare() {
 
 # nothing to configure
 nodejs_gulp_configure() {
- return
+  return
 }
 
 #

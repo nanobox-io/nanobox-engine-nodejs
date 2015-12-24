@@ -17,7 +17,7 @@ nodejs_broccoli_prepare() {
 
 # Nothing to configure
 nodejs_broccoli_configure() {
-  echo "false"
+  return
 }
 
 nodejs_broccoli_compile() {
