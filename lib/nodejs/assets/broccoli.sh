@@ -6,8 +6,9 @@
 # Install broccoli npm module
 nodejs_broccoli_prepare() {
   # return early if broccoli is not required
-  [[ "$(nodejs_is_broccoli_required)" = "false" ]] \
-    && echo "false" && return
+  if [[ "$(nodejs_is_broccoli_required)" = "false" ]]; then
+    return
+  fi
 
   # install broccoli
   ( cd $(nos_code_dir)
@@ -21,8 +22,9 @@ nodejs_broccoli_configure() {
 
 nodejs_broccoli_compile() {
   # return early if broccoli is not required
-  [[ "$(nodejs_is_broccoli_required)" = "false" ]] \
-    && echo "false" && return
+  if [[ "$(nodejs_is_broccoli_required)" = "false" ]]; then
+    return
+  fi
 
   # todo: make the broccoli command available through Boxfile
   ( cd $(nos_code_dir)

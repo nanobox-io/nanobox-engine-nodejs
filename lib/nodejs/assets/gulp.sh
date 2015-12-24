@@ -6,8 +6,9 @@
 # Install gulp npm module
 nodejs_gulp_prepare() {
   # return early if gulp is not required
-  [[ "$(nodejs_is_gulp_required)" = "false" ]] \
-    && echo "false" && return
+  if [[ "$(nodejs_is_gulp_required)" = "false" ]]; then
+    return
+  fi
 
   # install gulp
   ( cd $(nos_code_dir)
@@ -16,14 +17,15 @@ nodejs_gulp_prepare() {
 
 # nothing to configure
 nodejs_gulp_configure() {
- echo "false"
+ return
 }
 
 #
 nodejs_gulp_compile() {
   # return early if gulp is not required
-  [[ "$(nodejs_is_gulp_required)" = "false" ]] \
-    && echo "false" && return
+  if [[ "$(nodejs_is_gulp_required)" = "false" ]]; then
+    return
+  fi
 
   # todo: make the gulp command available through Boxfile
   ( cd $(nos_code_dir)

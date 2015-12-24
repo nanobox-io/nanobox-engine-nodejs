@@ -6,8 +6,9 @@
 # Install grunt npm module
 nodejs_grunt_prepare() {
   # return early if grunt is not required
-  [[ "$(nodejs_is_grunt_required)" = "false" ]] \
-    && echo "false" && return
+  if [[ "$(nodejs_is_grunt_required)" = "false" ]]; then
+    return
+  fi
 
   # install grunt
   ( cd $(nos_code_dir)
@@ -16,14 +17,15 @@ nodejs_grunt_prepare() {
 
 # nothing to configure
 nodejs_grunt_configure() {
- echo "false"
+ return
 }
 
 #
 nodejs_grunt_compile() {
   # return early if grunt is not required
-  [[ "$(nodejs_is_grunt_required)" = "false" ]] \
-    && echo "false" && return
+  if [[ "$(nodejs_is_grunt_required)" = "false" ]]; then
+    return
+  fi
 
   # todo: make the grunt command available through Boxfile
   ( cd $(nos_code_dir)

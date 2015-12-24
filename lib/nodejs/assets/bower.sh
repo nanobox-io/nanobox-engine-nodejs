@@ -6,8 +6,9 @@
 # Install bower npm module
 nodejs_bower_prepare() {
   # return early if bower is not required
-  [[ "$(nodejs_is_bower_required)" = "false" ]] \
-    && echo "false" && return
+  if [[ "$(nodejs_is_bower_required)" = "false" ]]; then
+    return
+  fi
 
   # install bower
   ( cd $(nos_code_dir)
@@ -17,8 +18,9 @@ nodejs_bower_prepare() {
 # Run bower install
 nodejs_bower_configure() {
   # return early if bower is not required
-  [[ "$(nodejs_is_bower_required)" = "false" ]] \
-    && echo "false" && return
+  if [[ "$(nodejs_is_bower_required)" = "false" ]]; then
+    return
+  fi
 
   ( cd $(nos_code_dir)
     nos_run_subprocess "running bower install" \
@@ -33,8 +35,9 @@ nodejs_bower_compile() {
 # Add bower_components to lib_dirs
 nodejs_bower_detect_lib_dirs() {
   # return early if bower is not required
-  [[ "$(nodejs_is_bower_required)" = "false" ]] \
-    && echo "false" && return
+  if [[ "$(nodejs_is_bower_required)" = "false" ]]; then
+    return
+  fi
 
   nodejs_asset_lib_dirs+=("bower_components")
 }

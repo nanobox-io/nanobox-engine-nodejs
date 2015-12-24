@@ -6,8 +6,9 @@
 # Install brunch npm module
 nodejs_brunch_prepare() {
   # return early if brunch is not required
-  [[ "$(nodejs_is_brunch_required)" = "false" ]] \
-    && echo "false" && return
+  if [[ "$(nodejs_is_brunch_required)" = "false" ]]; then
+    return
+  fi
 
   # install brunch
   ( cd $(nos_code_dir)
@@ -22,8 +23,9 @@ nodejs_brunch_configure() {
 #
 nodejs_brunch_compile() {
   # return early if brunch is not required
-  [[ "$(nodejs_is_brunch_required)" = "false" ]] \
-    && echo "false" && return
+  if [[ "$(nodejs_is_brunch_required)" = "false" ]]; then
+    return
+  fi
 
   # todo: make the brunch command available through Boxfile
   ( cd $(nos_code_dir)
