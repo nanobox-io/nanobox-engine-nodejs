@@ -55,8 +55,9 @@ done
 nodejs_prepare_asset_runtime() {
   # First, we need to see if this app will require an asset compilation.
   # If not, let's exit early.
-  [[ "$(_nodejs_detect_asset_requirements)" = "false" ]] \
-    && echo "false" && return
+  if [[ "$(_nodejs_detect_asset_requirements)" = "false" ]]; then
+    return
+  fi
 
   # Well we'll certainly need nodejs, so let's install that now
   nodejs_install_runtime
