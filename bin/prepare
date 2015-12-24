@@ -11,8 +11,6 @@ nos_init "$@"
 # source common lib
 . ${engine_lib_dir}/nodejs.sh
 
-nos_print_process_start "Installing packages"
-
 # install node.js or io.js
 nodejs_install_runtime
 
@@ -22,7 +20,7 @@ nodejs_npm_rebuild
 # install bower if a Bower.json file is detected
 nodejs_install_bower
 
-# persist all environment variables 
+# persist all environment variables
 nos_persist_evars
 
 # run npm install

@@ -11,7 +11,12 @@ nos_init "$@"
 # source common lib
 . ${engine_lib_dir}/nodejs.sh
 
+# notify the user of configuration
+nodejs_report_boxfile
+
+# detect required lib_dirs for asset frameworks
+nodejs_detect_asset_lib_dirs
+
 # dynamically generate a Boxfile from a template,
 # and print to stdout
-nos_print_process_start "Generating Engine Boxfile"
-nodejs_create_boxfile
+nodejs_generate_boxfile
