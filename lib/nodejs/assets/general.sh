@@ -111,7 +111,7 @@ nodejs_detect_asset_lib_dirs() {
   # first let check to see if package.json exists, if so we know
   # we'll need node_modules.
   if [[ -f $(nos_code_dir)/package.json ]]; then
-    nodejs_asset_lib_dirs=+("node_modules")
+    nodejs_asset_lib_dirs+=("node_modules")
   fi
 
   # now we'll defer the rest to to the specific plugins
