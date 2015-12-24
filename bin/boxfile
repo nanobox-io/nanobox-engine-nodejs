@@ -14,9 +14,6 @@ nos_init "$@"
 # notify the user of configuration
 nodejs_report_boxfile
 
-# detect required lib_dirs for asset frameworks
-nodejs_detect_asset_lib_dirs
-
 # dynamically generate a Boxfile from a template,
 # and print to stdout
 nodejs_generate_boxfile

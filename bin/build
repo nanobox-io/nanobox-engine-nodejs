@@ -11,15 +11,9 @@ nos_init "$@"
 # source common lib
 . ${engine_lib_dir}/nodejs.sh
 
-# run Boxfile hooks defined in the "before" node
-nos_run_hooks "before"
+# nodejs doesn't have a build/compile process, other than javascript asset
+# frameworks if they exist and are configured
+nodejs_compile_assets
 
-# run Boxfile hooks defined in the "exec" node
-nos_run_hooks "exec"
-
-# run Boxfile hooks defined in the "after" node
-nos_run_hooks "after"
-
-# copy the source code into the live directory
-nos_print_bullet "Copying release into live code directory..."
-rsync -a $(nos_code_dir)/ $(nos_live_dir)
+# copy the release into the live code directory
+nodejs_publish_release

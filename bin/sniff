@@ -6,4 +6,6 @@
 
 [[ -f ${1}/package.json ]] && exit 0
 [[ -f ${1}/server.js ]] && exit 0
+[[ -f ${1}/app.js ]] && exit 0
+
 exit 1

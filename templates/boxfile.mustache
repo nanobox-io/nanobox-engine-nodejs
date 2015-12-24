@@ -1,6 +1,8 @@
 build:
   lib_dirs:
-    
+    {{#asset_lib_dirs}}
+      - {{.}}
+    {{/asset_lib_dirs}}
 {{#can_exec}}
 web1:
   ports:

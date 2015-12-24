@@ -95,6 +95,15 @@ nodejs_compile_assets() {
   _nodejs_delegate_to_plugins "compile"
 }
 
+# returns a json array of the detected lib_dirs
+nodejs_asset_lib_dirs_json() {
+  # propogate the contents of nodejs_asset_lib_dirs
+  nodejs_detect_asset_lib_dirs
+
+  # convert the bash array into a json array
+  echo "[ \"$(nos_join '","' ${nodejs_asset_lib_dirs[@]})\" ]"
+}
+
 # Asset plugins will likely need to store dependencies between
 # builds or deploys. Lib_dirs is the mechanism for this. We will
 # need to inform the other engines of which lib_dirs are necessary.

@@ -1,7 +1,9 @@
 # -*- mode: bash; tab-width: 2; -*-
 # vim: ts=2 sw=2 ft=bash noet
 
-# todo: try to detect the port to listen on?
+# global state to ensure we don't run npm install
+# more than once for a prepare run.
+nodejs_npm_installed="false"
 
 nodejs_generate_boxfile() {
   nos_template \
@@ -15,7 +17,7 @@ nodejs_boxfile_payload() {
 {
   "can_exec": $(nodejs_can_exec),
   "exec_cmd": $(nodejs_exec_cmd),
-  "asset_lib_dirs": ${nodejs_asset_lib_dirs}
+  "asset_lib_dirs": "$(nodejs_asset_lib_dirs_json)"
 }
 END
 }
@@ -39,6 +41,7 @@ nodejs_report_boxfile_web() {
     if [[ "$(nodejs_exec_cmd)" != "false" ]]; then
       nos_print_bullet_sub  "web1 service will be started with:"
       nos_print_bullet_info "   $(nodejs_exec_cmd)"
+      nos_print_bullet_sub  "web1 service will forward http/s to port 8080"
     else
       nos_print_bullet_sub  "web1 service cannot be auto-generated"
       nos_print_bullet_info "   We're unable to determine a suitable way to run this app."
@@ -47,6 +50,17 @@ nodejs_report_boxfile_web() {
       nos_print_bullet_info "      http://engines.nanobox.io/engines/0754ca2d-70bd-45b3-996e-c96e5ef882ce"
     fi
   fi
+}
+
+# Set a port that the application can use to bind to
+nodejs_persist_web_port_evar() {
+  persist_evar "PORT" "8080"
+}
+
+# Copy the code into the live directory which will be used to run the app
+nodejs_publish_release() {
+  nos_print_bullet "Moving build into live code directory..."
+  rsync -a $(nos_code_dir)/ $(nos_live_dir)
 }
 
 # Determine the nodejs runtime to install. This will first check
@@ -59,15 +73,29 @@ nodejs_runtime() {
 }
 
 # Provide a default nodejs version.
-# todo: this should include an idiomatic check
 nodejs_default_runtime() {
-  echo "nodejs-4.2"
+  packagejs_runtime=$(nodejs_package_json_runtime)
+
+  if [[ "$packagejs_runtime" = "false" ]]; then
+    echo "nodejs-4.2"
+  else
+    echo $packagejs_runtime
+  fi
+}
+
+# todo: extract the contents of package.json
+#   Will need https://stedolan.github.io/jq/
+#   https://github.com/heroku/heroku-buildpack-nodejs/blob/master/lib/json.sh#L17
+#   https://github.com/heroku/heroku-buildpack-nodejs/blob/master/bin/compile#L73
+nodejs_package_json_runtime() {
+  echo "false"
 }
 
 # Install the nodejs runtime.
-# todo: this will be called twice if the asset build requests it.
-#       We need to find a way to idempotently install nodejs.
 nodejs_install_runtime() {
+  # short circuit if node is already installed
+  which node 2>&1 > /dev/null && return
+
   nos_install "$(nodejs_runtime)"
 }
 
@@ -99,13 +127,16 @@ nodejs_npm_rebuild() {
 }
 
 # Installing dependencies from the package.json is done with npm install.
-# Todo: This should drop a timestamp in the node_modules that can be used
-# to ensure we don't run npm_install twice on the same deploy. That can
-# happen if static assets request an npm install
 nodejs_npm_install() {
+  # if we've already run, short-circuit
+  [[ "$nodejs_npm_installed" = "true" ]] && return
+
   if [[ -f $(nos_code_dir)/package.json ]]; then
     ( cd $(nos_code_dir)
       nos_run_subprocess "installing npm modules" "npm install" )
+
+    # mark the run to ensure we don't npm install twice
+    nodejs_npm_installed="true"
   fi
 }
 
