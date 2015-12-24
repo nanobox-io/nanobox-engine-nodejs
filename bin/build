@@ -17,3 +17,5 @@ nodejs_compile_assets
 
 # copy the release into the live code directory
 nodejs_publish_release
+
+exit 0

@@ -17,3 +17,5 @@ nodejs_report_boxfile
 # dynamically generate a Boxfile from a template,
 # and print to stdout
 nodejs_generate_boxfile
+
+exit 0

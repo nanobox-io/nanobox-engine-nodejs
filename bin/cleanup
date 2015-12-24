@@ -3,3 +3,5 @@
 # vim: ts=2 sw=2 ft=bash noet
 
 # nothing to cleanup
+
+exit 0

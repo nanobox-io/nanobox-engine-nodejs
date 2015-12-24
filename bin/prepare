@@ -34,3 +34,5 @@ nodejs_prepare_asset_runtime
 
 # javascript asset environment configuration
 nodejs_configure_asset_environment
+
+exit 0
