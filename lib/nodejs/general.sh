@@ -16,8 +16,8 @@ nodejs_boxfile_payload() {
   cat <<-END
 {
   "can_exec": $(nodejs_can_exec),
-  "exec_cmd": $(nodejs_exec_cmd),
-  "asset_lib_dirs": "$(nodejs_asset_lib_dirs_json)"
+  "exec_cmd": "$(nodejs_exec_cmd)",
+  "asset_lib_dirs": $(nodejs_asset_lib_dirs_json)
 }
 END
 }
