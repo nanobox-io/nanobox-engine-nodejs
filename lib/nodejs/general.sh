@@ -95,27 +95,45 @@ nodejs_package_json_runtime() {
 # Install the nodejs runtime.
 nodejs_install_runtime() {
   # short circuit if node is already installed
-  which node 2>&1 > /dev/null && return
+  if [[ "$(nodejs_is_node_installed)" = "true" ]]; then
+    return
+  fi
 
   nos_install "$(nodejs_runtime)"
+}
+
+# checks to see if node is installed
+nodejs_is_node_installed() {
+  if [[ `which node 2>&1 > /dev/null` ]]; then
+    echo "true"
+  else
+    echo "false"
+  fi
 }
 
 # set the runtime in a file inside of node_modules so that if the
 # runtime changes between deploys, we can blast the node_modules
 # cache and build fresh.
 nodejs_set_runtime() {
-  [[ -d $(nos_code_dir)/node_modules ]] \
-    && echo "$(nodejs_runtime)" > $(nos_code_dir)/node_modules/runtime
+  echo "$(nos_code_dir)/node_modules"
+  if [[ -d $(nos_code_dir)/node_modules ]]; then
+    echo "$(nodejs_runtime)" > $(nos_code_dir)/node_modules/runtime
+  fi
 }
 
 # check the runtime that was set at the last deploy, and ensure it
 # hasn't changed. If it has changed, we'll return false.
 nodejs_check_runtime() {
-  [[ ! -d $(nos_code_dir)/node_modules ]] \
-    && echo "true" && return
+  if [[ ! -d $(nos_code_dir)/node_modules ]]; then
+    echo "true"
+    return
+  fi
 
-  [[ "$(cat $(nos_code_dir)/node_modules/runtime)" =~ ^$(nodejs_runtime)$ ]] \
-    && echo "true" || echo "false"
+  if [[ "$(cat $(nos_code_dir)/node_modules/runtime)" =~ ^$(nodejs_runtime)$ ]]; then
+    echo "false"
+  else
+    echo "true"
+  fi
 }
 
 # If the package.json has changed since the previous deploy it should
