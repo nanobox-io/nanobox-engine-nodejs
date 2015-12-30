@@ -32,7 +32,7 @@ if [[ ! "$extension" = "bats" ]]; then
   exit 1
 fi
 
-echo "+> Running test (${file}):"
+echo "+> Running test ${file}:"
 
 tty_opts=""
 
