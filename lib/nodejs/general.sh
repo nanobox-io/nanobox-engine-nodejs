@@ -22,6 +22,7 @@ nodejs_boxfile_payload() {
 END
 }
 
+#
 nodejs_report_boxfile() {
   nos_print_bullet "Generating Boxfile"
 
@@ -35,8 +36,8 @@ nodejs_report_boxfile() {
 nodejs_report_boxfile_web() {
   # short-circuit early if they have a Boxfile and it has a web1.exec
   # since that will be used anyway
-  if [[ ! ( -f $(nos_code_dir/Boxfile) \
-           && "$(cat $(nos_code_dir)/Boxfile | shon)" =~ web1_exec ) ]]; then
+  if [[ ! ( -f "$(nos_code_dir)/Boxfile" \
+           && `cat $(nos_code_dir)/Boxfile | grep 'web1'`) ]]; then
 
     if [[ "$(nodejs_exec_cmd)" != "false" ]]; then
       nos_print_bullet_sub  "web1 service will be started with:"
