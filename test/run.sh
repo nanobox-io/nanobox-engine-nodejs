@@ -34,8 +34,15 @@ fi
 
 echo "+> Running test (${file}):"
 
+tty_opts=""
+
+if [[ ! $TRAVIS ]]; then
+  tty_opts="-t"
+fi
+
 # Run the test directly in a docker container
 docker run \
+  $tty_opts \
   --privileged=true \
   --workdir=/test \
   --volume=${test_dir}/:/test \
