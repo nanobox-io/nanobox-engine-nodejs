@@ -1,4 +1,4 @@
-# Test the runtime selection
+# Test the npm functionality
 
 # source the Nos framework
 . /opt/nos/common.sh
