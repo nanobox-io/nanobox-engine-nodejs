@@ -42,7 +42,7 @@ docker run \
   --volume=${test_dir}/:/test \
   --volume=${engine_dir}/:/engine \
   nanobox/build \
-  /test/bats/bin/bats \
+  /test/util/bats/bin/bats \
     --pretty \
     /test/tests/${file} \
       2>&1 \
