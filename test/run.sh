@@ -47,7 +47,7 @@ docker run \
     /test/tests/${file} \
       2>&1 \
         | (grep '\S' || echo "") \
-          | sed -e 's/\r//g;s/^/   /;s/✗/  ✗/;s/✓/  ✓/'
+          | sed -e 's/\r//g;s/^/   /'
 
 # test the exit code
 if [[ "${PIPESTATUS[0]}" != "0" ]]; then
