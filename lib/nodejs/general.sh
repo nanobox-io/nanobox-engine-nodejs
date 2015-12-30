@@ -182,7 +182,7 @@ nodejs_can_npm_start() {
   fi
 
   # parse package.json and see if a script start value exists
-  if [[ "$(cat $(nos_code_dir)/package.json | shon)" =~ scripts_start_value ]]; then
+  if [[ `cat $(nos_code_dir)/package.json | shon | grep scripts_start_value` ]]; then
     echo "true"
   else
     echo "false"
