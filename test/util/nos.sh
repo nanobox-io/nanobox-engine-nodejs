@@ -32,13 +32,8 @@ nos_init() {
 # Extracts the JSON payload into SHON format and evals the result as
 # local variables prefixed with PL_
 nos_eval_payload() {
-  # unset payload vars from previous run
-  for var in ${payload_vars[@]}; do
-    unset $var
-  done
-
-  # reset the payload keys
-  payload_vars=()
+  # reset the payload
+  nos_reset_payload
 
   # extract and set new variables
   for var in $(echo "$1" | shon | sed -e "s/^/PL_/"); do
@@ -49,4 +44,17 @@ nos_eval_payload() {
     # eval the variable so that it is available
     eval $var
   done
+}
+
+# nos_reset_payload(0)
+#
+# Resets the payload environment previously set.
+nos_reset_payload() {
+  # unset payload vars from previous run
+  for var in ${payload_vars[@]}; do
+    unset $var
+  done
+
+  # reset the payload keys
+  payload_vars=()
 }
