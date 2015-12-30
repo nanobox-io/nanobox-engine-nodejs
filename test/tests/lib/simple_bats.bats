@@ -13,6 +13,5 @@
 
 @test "addition using dc" {
   result="$(ls > /dev/null)"
-  # [ "$result" -eq 4 ]
-  [ 1 ]
+  [ "$result" -eq 4 ]
 }
