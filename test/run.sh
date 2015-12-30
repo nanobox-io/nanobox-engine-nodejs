@@ -36,14 +36,12 @@ echo "+> Running test (${file}):"
 
 # Run the test directly in a docker container
 docker run \
-  -t \
   --privileged=true \
   --workdir=/test \
   --volume=${test_dir}/:/test \
   --volume=${engine_dir}/:/engine \
   nanobox/build \
   /test/util/bats/bin/bats \
-    --pretty \
     /test/tests/${file} \
       2>&1 \
         | (grep '\S' || echo "") \
