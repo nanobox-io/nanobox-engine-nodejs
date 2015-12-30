@@ -140,8 +140,9 @@ nodejs_check_runtime() {
 # be rebuilt to ensure unused packages are purged.
 nodejs_npm_rebuild() {
   if [[ "$(nodejs_check_runtime)" = "false" ]]; then
-    ( cd $(nos_code_dir)
-      nos_run_subprocess "rebuilding npm modules" "npm rebuild" )
+    cd $(nos_code_dir)
+    nos_run_subprocess "rebuilding npm modules" "npm rebuild"
+    cd -
   fi
 }
 
@@ -151,8 +152,10 @@ nodejs_npm_install() {
   [[ "$nodejs_npm_installed" = "true" ]] && return
 
   if [[ -f $(nos_code_dir)/package.json ]]; then
-    ( cd $(nos_code_dir)
-      nos_run_subprocess "installing npm modules" "npm install" )
+
+    cd $(nos_code_dir)
+    nos_run_subprocess "installing npm modules" "npm install"
+    cd -
 
     # mark the run to ensure we don't npm install twice
     nodejs_npm_installed="true"
