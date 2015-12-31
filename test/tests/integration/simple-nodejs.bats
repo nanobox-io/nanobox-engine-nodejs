@@ -87,7 +87,7 @@ setup() {
 
 @test "verify" {
   # remove the code dir
-  rm -f /tmp/code
+  rm -rf /tmp/code
 
   # mv the live_dir to code_dir
   mv /tmp/live /tmp/code
@@ -100,7 +100,7 @@ setup() {
 
   # curl the index
   run curl 127.0.0.1:8080
-  
+
   expected="Node.js - Express - Hello World!"
 
   [ "$output" = "$expected" ]
