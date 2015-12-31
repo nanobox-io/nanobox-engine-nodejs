@@ -11,6 +11,9 @@ test_dir="$(dirname $(readlink -f $BASH_SOURCE))"
 tests_dir="${test_dir}/tests"
 engine_dir="$(dirname ${test_dir})"
 
+# source the env helper
+. $test_dir/util/env.sh
+
 # Ensure an argument was provided
 if [[ $# -lt 1 ]]; then
   echo "Fatal: Must provide a test file as an argument"
@@ -43,8 +46,10 @@ fi
 # Run the test directly in a docker container
 docker run \
   $tty_opts \
+  -u=gonano \
   --privileged=true \
   --workdir=/test \
+  -e "PATH=$(path)" \
   --volume=${test_dir}/:/test \
   --volume=${engine_dir}/:/engine \
   nanobox/build \
