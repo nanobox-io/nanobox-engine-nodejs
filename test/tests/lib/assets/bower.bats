@@ -38,7 +38,6 @@ END
 }
 
 @test "determines bower is not required if no bower.json is found" {
-  touch /tmp/code/bower.json
 
   required=$(nodejs_is_bower_required)
 
