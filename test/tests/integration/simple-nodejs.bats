@@ -85,10 +85,23 @@ setup() {
   [ "$status" -eq 0 ]
 }
 
-@test "run" {
-  # node server.js
-}
-
 @test "verify" {
+  # remove the code dir
+  rm -f /tmp/code
 
+  # mv the live_dir to code_dir
+  mv /tmp/live /tmp/code
+
+  # cd into the live code_dir
+  cd /tmp/code
+
+  # start the server in the background
+  node server.js &
+
+  # curl the index
+  run curl 127.0.0.1:8080
+  
+  expected="Node.js - Express - Hello World!"
+
+  [ "$output" = "$expected" ]
 }
