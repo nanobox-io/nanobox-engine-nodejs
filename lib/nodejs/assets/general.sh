@@ -73,8 +73,9 @@ nodejs_prepare_asset_runtime() {
 nodejs_configure_asset_environment() {
   # First, we need to see if this app will require an asset compilation.
   # If not, let's exit early.
-  [[ "$(_nodejs_is_asset_compilation_required)" = "false" ]] \
-    && echo "false" && return
+  if [[ "$(_nodejs_is_asset_compilation_required)" = "false" ]]; then
+    return
+  fi
 
   # npm install
   nodejs_npm_install
@@ -89,8 +90,9 @@ nodejs_configure_asset_environment() {
 nodejs_compile_assets() {
   # First, we need to see if this app will require an asset compilation.
   # If not, let's exit early.
-  [[ "$(_nodejs_is_asset_compilation_required)" = "false" ]] \
-    && echo "false" && return
+  if [[ "$(_nodejs_is_asset_compilation_required)" = "false" ]]; then
+    return
+  fi
 
   # defer to the plugins for compilation
   _nodejs_delegate_to_plugins "compile"
@@ -152,15 +154,20 @@ _nodejs_detect_asset_requirements() {
 _nodejs_is_asset_compilation_required() {
   # first, let's check for a package.json. If we have that, we
   # know we'll need an asset compilation so we can exit early
-  [[ -f $(nos_code_dir)/package.json ]] && echo "true" && return
+  if [[ -f $(nos_code_dir)/package.json ]]; then
+    echo "true"
+    return
+  fi
 
   # If we don't have a package.json, then let's let the other
   # plugins determine if they are eligible for compilation.
   #
   # Once we find a match, return immediately
   for plugin in "${nodejs_asset_plugins[@]}"; do
-    [[ "$(nodejs_is_${plugin}_required)" = "true" ]] \
-      && echo "true" && return
+    if [[ "$(nodejs_is_${plugin}_required)" = "true" ]]; then
+      echo "true"
+      return
+    fi
   done
 
   # if we've made it this far without a match, then compilation
