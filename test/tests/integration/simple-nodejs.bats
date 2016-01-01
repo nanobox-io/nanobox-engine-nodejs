@@ -103,7 +103,7 @@ setup() {
 
   # wait up to 30 seconds for the server to be ready
   attempts=0
-  while [[ ! nc -z 127.0.0.1 8080 && $attempts -lt 30 ]]; do
+  while [[ ! `nc -z 127.0.0.1 8080` && $attempts -lt 30 ]]; do
     let attempts++
     sleep 1
   done
