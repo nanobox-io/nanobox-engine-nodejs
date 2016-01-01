@@ -101,12 +101,8 @@ setup() {
   # grab the pid
   pid=$!
 
-  # wait up to 30 seconds for the server to be ready
-  attempts=0
-  while [[ ! `nc -z 127.0.0.1 8080` && $attempts -lt 30 ]]; do
-    let attempts++
-    sleep 1
-  done
+  # sleep a few seconds so the server can start
+  sleep 3
 
   # check netstat for debug inspection
   netstat=$(netstat -an)
