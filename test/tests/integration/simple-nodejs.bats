@@ -105,7 +105,7 @@ setup() {
   sleep 3
 
   # curl the index
-  run curl 127.0.0.1:8080 2>/dev/null
+  run curl -s 127.0.0.1:8080 2>/dev/null
 
   expected="Node.js - Express - Hello World!"
 
