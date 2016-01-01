@@ -96,7 +96,7 @@ setup() {
   cd /tmp/code
 
   # start the server in the background
-  node server.js &
+  node server.js > /dev/null 2>&1 &
 
   # grab the pid
   pid=$!
@@ -106,8 +106,10 @@ setup() {
 
   expected="Node.js - Express - Hello World!"
 
+  echo "$output"
+
   # kill the server
-  kill -9 $pid
+  kill -9 $pid > /dev/null 2>&1
 
   [ "$output" = "$expected" ]
 }
