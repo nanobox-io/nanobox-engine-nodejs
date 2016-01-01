@@ -101,12 +101,23 @@ setup() {
   # grab the pid
   pid=$!
 
+  # wait up to 30 seconds for the server to be ready
+  attempts=0
+  while [[ ! nc -z 127.0.0.1 8080 && $attempts -lt 30 ]]; do
+    let attempts++
+    sleep 1
+  done
+
+  # check netstat for debug inspection
+  netstat=$(netstat -an)
+
   # curl the index
   run curl 127.0.0.1:8080
 
   expected="Node.js - Express - Hello World!"
 
   echo "$output"
+  echo "$netstat"
 
   # kill the server
   kill -9 $pid > /dev/null 2>&1
