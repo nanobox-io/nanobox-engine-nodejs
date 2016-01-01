@@ -109,8 +109,6 @@ setup() {
 
   expected="Node.js - Express - Hello World!"
 
-  echo "$output"
-
   # kill the server
   kill -9 $pid > /dev/null 2>&1
 
