@@ -98,10 +98,16 @@ setup() {
   # start the server in the background
   node server.js &
 
+  # grab the pid
+  pid=$!
+
   # curl the index
   run curl 127.0.0.1:8080
 
   expected="Node.js - Express - Hello World!"
+
+  # kill the server
+  kill -9 $pid
 
   [ "$output" = "$expected" ]
 }
