@@ -104,16 +104,12 @@ setup() {
   # sleep a few seconds so the server can start
   sleep 3
 
-  # check netstat for debug inspection
-  netstat=$(netstat -an)
-
   # curl the index
-  run curl 127.0.0.1:8080
+  run curl 127.0.0.1:8080 2>/dev/null
 
   expected="Node.js - Express - Hello World!"
 
   echo "$output"
-  echo "$netstat"
 
   # kill the server
   kill -9 $pid > /dev/null 2>&1
