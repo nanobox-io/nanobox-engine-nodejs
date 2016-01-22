@@ -1,0 +1,17 @@
+{
+  "name": "spoon.js-sample-app",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/IndigoUnited/spoon.js-sample-app.git"
+  },
+  "devDependencies": {
+    "mout": "~0.6.0",
+    "express": "~3.2.6",
+    "connect": "~2.7.11",
+    "requirejs": "~2.1.2",
+    "uglify-js": "~2.3.6",
+    "clean-css": "~1.0.10",
+    "gzip-js": "~0.3.2"
+  }
+}

@@ -1,0 +1,9 @@
+/node_modules
+/npm-debug.*
+/components
+/bower_components
+
+/web/dev
+/web/prod
+/web/staging
+/tmp

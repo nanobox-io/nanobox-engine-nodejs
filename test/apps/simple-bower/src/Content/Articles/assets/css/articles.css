@@ -1,0 +1,11 @@
+.articles-list {
+    width: 300px;
+}
+
+.articles-list table {
+    width: 150px;
+}
+
+.articles-list table tr {
+    display: block;
+}

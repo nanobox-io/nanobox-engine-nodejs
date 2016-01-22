@@ -1,0 +1,28 @@
+#menu {
+    width: 200px;
+    height: 100%;
+}
+
+#menu .navbar-inner {
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 200px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+
+#menu li {
+    float: none;
+    width: 200px;
+}
+#menu .navbar {
+    margin-bottom: 0;
+}
+
+#menu .navbar, #menu .nav, #menu .navbar-inner {
+    margin-bottom: 0;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+}

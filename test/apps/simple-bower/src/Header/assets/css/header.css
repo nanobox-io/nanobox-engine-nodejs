@@ -1,0 +1,7 @@
+#header {
+    height: 41px;
+}
+
+#header .brand {
+    margin-left: -10px;
+}

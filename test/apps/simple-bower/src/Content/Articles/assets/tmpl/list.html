@@ -1,0 +1,15 @@
+<h1>Articles</h1>
+
+{{ if (it.articles.length) { }}
+<table class="table">
+{{~it.articles :article:index }}
+    <tr data-id="{{= article.id }}">
+        <td>{{= article.id }}</td>
+        <td><a href="{{= this.url('show', { id: article.id }) }}">{{= article.title }}</td>
+    </tr>
+{{~ }}
+</table>
+{{ } }}
+{{ else { }}
+No articles yet!
+{{ } }}
