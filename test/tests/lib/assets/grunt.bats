@@ -22,7 +22,7 @@ setup() {
   nodejs_asset_lib_dirs=()
 }
 
-@test "detects grunt is required if Gruntfile is found" {
+@test "detects grunt is required if Gruntfile.js is found" {
   nos_init "$(cat <<-END
 {
   "code_dir": "/tmp/code"
@@ -30,14 +30,14 @@ setup() {
 END
   )"
 
-  touch /tmp/code/Gruntfile
+  touch /tmp/code/Gruntfile.js
 
   required=$(nodejs_is_grunt_required)
 
   [ "$required" = "true" ]
 }
 
-@test "determines grunt is not required if no Gruntfile is found" {
+@test "determines grunt is not required if no Gruntfile.js is found" {
 
   required=$(nodejs_is_grunt_required)
 
@@ -52,14 +52,14 @@ END
 END
   )"
 
-  touch /tmp/code/Gruntfile
+  touch /tmp/code/Gruntfile.js
 
   stub_and_echo "nodejs_is_grunt_required" "true"
 
   result=$(nodejs_detect_grunt_requirements 2>&1)
 
   expected="$(cat <<-END
-   - found Gruntfile
+   - found Gruntfile.js
 true
 END
   )"

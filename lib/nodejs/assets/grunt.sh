@@ -12,7 +12,7 @@ nodejs_grunt_prepare() {
 
   # install grunt
   ( cd $(nos_code_dir)
-    nos_run_subprocess "installing grunt" "npm install grunt" )
+    nos_run_subprocess "installing grunt" "npm install grunt-cli" )
 }
 
 # nothing to configure
@@ -41,7 +41,7 @@ nodejs_grunt_detect_lib_dirs() {
 # external, visible declaration of requirements
 nodejs_detect_grunt_requirements() {
   if [[ "$(nodejs_is_grunt_required)" = "true" ]]; then
-    nos_print_bullet_sub "found Gruntfile"
+    nos_print_bullet_sub "found Gruntfile.js"
     echo "true"
   else
     echo "false"
@@ -50,7 +50,7 @@ nodejs_detect_grunt_requirements() {
 
 # internal declaration on whether grunt is required
 nodejs_is_grunt_required() {
-  if [[ -f $(nos_code_dir)/Gruntfile ]]; then
+  if [[ -f $(nos_code_dir)/Gruntfile.js ]]; then
   	echo "true"
   else
   	echo "false"
