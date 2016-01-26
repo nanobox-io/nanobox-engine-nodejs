@@ -29,7 +29,7 @@ nodejs_bower_configure() {
 
 # Bower doesn't compile, return nothing
 nodejs_bower_compile() {
-  echo "false"
+  return
 }
 
 # Add bower_components to lib_dirs

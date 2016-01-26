@@ -1,4 +1,4 @@
-# Integration test for a simple bower app
+# Integration test for a simple broccoli app
 
 # source environment helpers
 . util/env.sh
@@ -12,14 +12,16 @@ payload() {
   "cache_dir": "/tmp/cache",
   "etc_dir": "/data/etc",
   "env_dir": "/data/etc/env.d",
-  "app": "simple-bower",
+  "app": "simple-broccoli",
   "env": {
-    "APP_NAME": "simple-bower"
+    "APP_NAME": "simple-broccoli"
   },
   "dns": [
-    "simple-bower.dev"
+    "simple-broccoli.dev"
   ],
-  "boxfile": {},
+  "boxfile": {
+    "nodejs_runtime": "nodejs-0.12.7"
+  },
   "platform": "local",
   "run": true
 }
@@ -42,7 +44,7 @@ setup() {
   mkdir -p /tmp/code
 
   # copy the app into place
-  cp -ar /test/apps/simple-bower/* /tmp/code
+  cp -ar /test/apps/simple-broccoli/* /tmp/code
 
   run pwd
 
@@ -95,13 +97,14 @@ setup() {
   # cd into the live code_dir
   cd /tmp/code
 
-  # ensure bower installed the dependencies
-  [ -d bower_components/spoonjs ]
-  [ -d bower_components/requirejs ]
-  [ -d bower_components/requirejs-text ]
-  [ -d bower_components/require-css ]
-  [ -d bower_components/almond ]
-  [ -d bower_components/jquery ]
-  [ -d bower_components/doT ]
-  [ -d bower_components/bootstrap ]
+  run cat log.txt
+
+  echo "$output"
+
+  # ensure broccoli built the dist directory
+  [ -d dist ]
+  [ -d dist/assets ]
+  [ -f dist/index.html ]
+  [ -f dist/assets/app.css ]
+  [ -f dist/assets/app.js ]
 }

@@ -136,6 +136,13 @@ nodejs_check_runtime() {
   fi
 }
 
+# npm is significantly faster when not trying to report progress.
+nodejs_npm_disable_progress() {
+  cd $(nos_code_dir)
+  nos_run_subprocess "disable npm progress" "npm set progress=false"
+  cd -
+}
+
 # If the package.json has changed since the previous deploy it should
 # be rebuilt to ensure unused packages are purged.
 nodejs_npm_rebuild() {

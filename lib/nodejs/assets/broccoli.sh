@@ -29,7 +29,7 @@ nodejs_broccoli_compile() {
   # todo: make the broccoli command available through Boxfile
   ( cd $(nos_code_dir)
     nos_run_subprocess "running broccoli build" \
-      "node_modules/.bin/broccoli build" )
+      "node_modules/.bin/broccoli build dist" )
 }
 
 # Broccoli doesn't need to store anything
