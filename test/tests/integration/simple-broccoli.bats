@@ -97,10 +97,6 @@ setup() {
   # cd into the live code_dir
   cd /tmp/code
 
-  run cat log.txt
-
-  echo "$output"
-
   # ensure broccoli built the dist directory
   [ -d dist ]
   [ -d dist/assets ]
