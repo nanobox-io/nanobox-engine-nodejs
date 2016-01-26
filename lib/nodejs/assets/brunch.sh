@@ -40,10 +40,10 @@ nodejs_brunch_detect_lib_dirs() {
 
 # external, visible declaration of requirements
 nodejs_detect_brunch_requirements() {
-  if [[ -f $(nos_code_dir)/config.coffee ]]; then
+  if [[ -f $(nos_code_dir)/brunch-config.coffee ]]; then
     nos_print_bullet_sub "found brunch-config.coffee"
     echo "true"
-  elif [[ -f $(nos_code_dir)/config.js ]]; then
+  elif [[ -f $(nos_code_dir)/brunch-config.js ]]; then
     nos_print_bullet_sub "found brunch-config.js"
     echo "true"
   else
