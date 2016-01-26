@@ -22,7 +22,7 @@ setup() {
   nodejs_asset_lib_dirs=()
 }
 
-@test "detects brunch is required if config.js is found" {
+@test "detects brunch is required if brunch-config.js is found" {
   nos_init "$(cat <<-END
 {
   "code_dir": "/tmp/code"
@@ -30,14 +30,14 @@ setup() {
 END
   )"
 
-  touch /tmp/code/config.js
+  touch /tmp/code/brunch-config.js
 
   required=$(nodejs_is_brunch_required)
 
   [ "$required" = "true" ]
 }
 
-@test "determines brunch is not required if no config.js is found" {
+@test "determines brunch is not required if no brunch-config.js is found" {
 
   required=$(nodejs_is_brunch_required)
 
@@ -52,14 +52,14 @@ END
 END
   )"
 
-  touch /tmp/code/config.js
+  touch /tmp/code/brunch-config.js
 
   stub_and_echo "nodejs_is_brunch_required" "true"
 
   result=$(nodejs_detect_brunch_requirements 2>&1)
 
   expected="$(cat <<-END
-   - found config.js
+   - found brunch-config.js
 true
 END
   )"
