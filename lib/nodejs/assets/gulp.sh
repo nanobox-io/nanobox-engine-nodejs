@@ -30,7 +30,7 @@ nodejs_gulp_compile() {
   # todo: make the gulp command available through Boxfile
   ( cd $(nos_code_dir)
     nos_run_subprocess "running gulp" \
-      "node_modules/.bin/gulp" )
+      "node_modules/.bin/gulp build" )
 }
 
 # gulp doesn't store anything between builds
