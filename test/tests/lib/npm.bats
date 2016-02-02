@@ -23,15 +23,15 @@ setup() {
 
 @test "npm install will not run more than once" {
 
-  nodejs_npm_installed="true"
+  npm_installed="true"
   npm_ran="false"
 
   stub_and_eval "nos_run_subprocess" "npm_ran=\"true\""
 
-  nodejs_npm_install
+  npm_install
 
   restore "nos_run_subprocess"
-  nodejs_npm_installed="false"
+  npm_installed="false"
 
   [ "$npm_ran" = "false" ]
 }
@@ -49,10 +49,10 @@ END
 
   stub_and_eval "nos_run_subprocess" "npm_ran=\"true\""
 
-  nodejs_npm_install
+  npm_install
 
   restore "nos_run_subprocess"
-  nodejs_npm_installed="false"
+  npm_installed="false"
 
   [ "$npm_ran" = "false" ]
 }
@@ -73,10 +73,10 @@ END
   mkdir -p /tmp/code
   touch /tmp/code/package.json
 
-  nodejs_npm_install
+  npm_install
 
   restore "nos_run_subprocess"
-  nodejs_npm_installed="false"
+  npm_installed="false"
 
   [ "$npm_ran" = "true" ]
 }
@@ -92,13 +92,13 @@ END
 
   rebuild_ran="false"
 
-  stub_and_echo "nodejs_check_runtime" "true"
+  stub_and_echo "check_runtime" "true"
 
   stub_and_eval "nos_run_subprocess" "rebuild_ran=\"true\""
 
-  nodejs_npm_rebuild
+  npm_rebuild
 
-  restore "nodejs_check_runtime"
+  restore "check_runtime"
   restore "nos_run_subprocess"
 
   [ "$rebuild_ran" = "false" ]
@@ -115,13 +115,13 @@ END
 
   rebuild_ran="false"
 
-  stub_and_echo "nodejs_check_runtime" "false"
+  stub_and_echo "check_runtime" "false"
 
   stub_and_eval "nos_run_subprocess" "rebuild_ran=\"true\""
 
-  nodejs_npm_rebuild
+  npm_rebuild
 
-  restore "nodejs_check_runtime"
+  restore "check_runtime"
   restore "nos_run_subprocess"
 
   [ "$rebuild_ran" = "true" ]

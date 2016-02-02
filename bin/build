@@ -11,11 +11,7 @@ nos_init "$@"
 # source common lib
 . ${engine_lib_dir}/nodejs.sh
 
-# nodejs doesn't have a build/compile process, other than javascript asset
-# frameworks if they exist and are configured
-nodejs_compile_assets
-
 # copy the release into the live code directory
-nodejs_publish_release
+publish_release
 
 exit 0

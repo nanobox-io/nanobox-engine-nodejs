@@ -1,9 +1,9 @@
 # Node.js
 
-This is a generic Node.js engine used to launch Node.js web and worker services when using [Nanobox](http://nanobox.io).
+This is a Node.js engine for running node apps with [Nanobox](http://nanobox.io).
 
 ## App Detection
-To detect a Node.js app, this engine looks for a `package.json`. If that exists, it then looks for a `server.js`.
+To detect a Node.js app, this engine looks for  `package.json`. If that exists, it then looks for a `server.js`.
 
 ## Build Process
 - `npm install`
@@ -16,7 +16,7 @@ This engine exposes configuration options through the [Boxfile](http://docs.nano
 #### Overview of Boxfile Configuration Options
 ```yaml
 build:
-  nodejs_runtime: nodejs-4.2
+  runtime: nodejs-4.2
 ```
 
 ---
@@ -36,7 +36,7 @@ Specifies which Node.js runtime and version to use. The following runtimes are a
 
 ```yaml
 build:
-  nodejs_runtime: nodejs-4.2
+  runtime: nodejs-4.2
 ```
 
 ---

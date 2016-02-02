@@ -12,27 +12,27 @@ nos_init "$@"
 . ${engine_lib_dir}/nodejs.sh
 
 # install node.js or io.js
-nodejs_install_runtime
+install_runtime
+
+# disable progress bar for faster npm tasks
+npm_disable_progress
 
 # run npm rebuild only if the runtime has changed
-nodejs_npm_rebuild
+npm_rebuild
+
+# run npm install
+npm_install
+
+# run npm prune
+npm_prune
 
 # persist all environment variables
 nos_persist_evars
 
-# persist http port evar
-nodejs_persist_web_port_evar
-
-# run npm install
-nodejs_npm_install
+# add node_modules/.bin to the PATH
+persist_npm_bin_to_path
 
 # set the node.js runtime in cache
-nodejs_set_runtime
-
-# javascript asset runtime installation (bower, gulp, etc)
-nodejs_prepare_asset_runtime
-
-# javascript asset environment configuration
-nodejs_configure_asset_environment
+persist_runtime
 
 exit 0
