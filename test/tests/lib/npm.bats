@@ -76,7 +76,6 @@ END
   npm_install
 
   restore "nos_run_subprocess"
-  npm_installed="false"
 
   [ "$npm_ran" = "true" ]
 }

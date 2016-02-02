@@ -75,8 +75,9 @@ npm_disable_progress() {
 # be rebuilt to ensure unused packages are purged.
 npm_rebuild() {
   if [[ "$(check_runtime)" = "false" ]]; then
-    ( cd $(nos_code_dir)
-      nos_run_subprocess "rebuilding npm modules" "npm rebuild" )
+    cd $(nos_code_dir)
+    nos_run_subprocess "rebuilding npm modules" "npm rebuild"
+    cd -
   fi
 }
 
@@ -84,8 +85,9 @@ npm_rebuild() {
 npm_install() {
   if [[ -f $(nos_code_dir)/package.json ]]; then
 
-    ( cd $(nos_code_dir)
-      nos_run_subprocess "installing npm modules" "npm install" )
+    cd $(nos_code_dir)
+    nos_run_subprocess "installing npm modules" "npm install"
+    cd -
   fi
 }
 
@@ -93,8 +95,9 @@ npm_install() {
 npm_prune() {
   if [[ -f $(nos_code_dir)/package.json ]]; then
 
-    ( cd $(nos_code_dir)
-      nos_run_subprocess "pruning npm modules" "npm prune" )
+    cd $(nos_code_dir)
+    nos_run_subprocess "pruning npm modules" "npm prune"
+    cd -
   fi
 }
 

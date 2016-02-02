@@ -75,26 +75,8 @@ END
   [ "$default" = "default-runtime" ]
 }
 
-@test "won't install node if already installed" {
-
+@test "will install node" {
   called="false"
-
-  stub_and_echo "is_node_installed" "true"
-
-  stub_and_eval "nos_install" "called=\"true\""
-
-  install_runtime
-
-  restore "is_node_installed"
-  restore "nos_install"
-
-  [ "$called" = "false" ]
-}
-
-@test "will install node if not already installed" {
-  called="false"
-
-  stub_and_echo "is_node_installed" "false"
 
   stub_and_eval "nos_install" "called=\"true\""
 
@@ -119,7 +101,7 @@ END
 
   stub_and_echo "runtime" "custom-runtime"
 
-  set_runtime
+  persist_runtime
 
   restore "runtime"
 
