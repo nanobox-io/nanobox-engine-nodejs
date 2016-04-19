@@ -12,16 +12,7 @@ payload() {
   "cache_dir": "/tmp/cache",
   "etc_dir": "/data/etc",
   "env_dir": "/data/etc/env.d",
-  "app": "simple-nodejs",
-  "env": {
-    "APP_NAME": "simple-nodejs"
-  },
-  "dns": [
-    "simple-nodejs.dev"
-  ],
-  "boxfile": {},
-  "platform": "local",
-  "run": true
+  "config": {}
 }
 END
 }
@@ -49,12 +40,6 @@ setup() {
   [ "$output" = "/engine/bin" ]
 }
 
-@test "sniff" {
-  run /engine/bin/sniff /tmp/code
-
-  [ "$status" -eq 0 ]
-}
-
 @test "boxfile" {
   run /engine/bin/boxfile "$(payload)"
 
@@ -79,6 +64,14 @@ setup() {
 
 @test "cleanup" {
   run /engine/bin/cleanup "$(payload)"
+
+  echo "$output"
+
+  [ "$status" -eq 0 ]
+}
+
+@test "pack" {
+  run /engine/bin/pack "$(payload)"
 
   echo "$output"
 
