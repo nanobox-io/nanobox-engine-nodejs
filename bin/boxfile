@@ -3,7 +3,7 @@
 # vim: ts=2 sw=2 ft=bash noet
 
 cat <<-END
-build:
+code.build:
   lib_dirs:
     - node_modules
 END

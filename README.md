@@ -15,8 +15,9 @@ This engine exposes configuration options through the [Boxfile](http://docs.nano
 
 #### Overview of Boxfile Configuration Options
 ```yaml
-build:
-  runtime: nodejs-4.2
+code.build:
+  config:
+    runtime: nodejs-4.2
 ```
 
 ---
@@ -35,8 +36,9 @@ Specifies which Node.js runtime and version to use. The following runtimes are a
 - iojs-2.3
 
 ```yaml
-build:
-  runtime: nodejs-4.2
+code.build:
+  config:
+    runtime: nodejs-4.2
 ```
 
 ---
