@@ -52,8 +52,8 @@ setup() {
 
     nos_init "$(cat <<-END
 {
-  "boxfile": {
-    "runtime": "boxfile-runtime"
+  "config": {
+    "runtime": "config-runtime"
   }
 }
 END
@@ -61,7 +61,7 @@ END
 
   runtime=$(runtime)
 
-  [ "$runtime" = "boxfile-runtime" ]
+  [ "$runtime" = "config-runtime" ]
 }
 
 @test "runtime falls back to default runtime" {
