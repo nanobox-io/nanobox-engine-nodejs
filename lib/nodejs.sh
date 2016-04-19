@@ -12,7 +12,7 @@ publish_release() {
 # provide a sensible default
 runtime() {
   echo $(nos_validate \
-    "$(nos_payload "boxfile_runtime")" \
+    "$(nos_payload "config_runtime")" \
     "string" "$(default_runtime)")
 }
 

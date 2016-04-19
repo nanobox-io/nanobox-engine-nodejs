@@ -26,9 +26,6 @@ npm_install
 # run npm prune
 npm_prune
 
-# persist all environment variables
-nos_persist_evars
-
 # add node_modules/.bin to the PATH
 persist_npm_bin_to_path
 
