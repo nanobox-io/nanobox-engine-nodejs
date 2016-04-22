@@ -1,7 +1,7 @@
 
 directories=(
   "/tmp/code"
-  "/tmp/live"
+  "/tmp/app"
   "/tmp/cache"
   "/data"
   "/data/etc"

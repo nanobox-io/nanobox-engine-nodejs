@@ -1,5 +1,0 @@
-build:
-    stability: beta
-    engine: ../../../../nanobox-engine-nodejs
-web1:
-    stability: stable

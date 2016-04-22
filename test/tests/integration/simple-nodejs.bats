@@ -7,8 +7,8 @@ payload() {
   cat <<-END
 {
   "code_dir": "/tmp/code",
-  "deploy_dir": "/data",
-  "live_dir": "/tmp/live",
+  "data_dir": "/data",
+  "app_dir": "/tmp/app",
   "cache_dir": "/tmp/cache",
   "etc_dir": "/data/etc",
   "env_dir": "/data/etc/env.d",
@@ -54,16 +54,8 @@ setup() {
   [ "$status" -eq 0 ]
 }
 
-@test "build" {
-  run /engine/bin/build "$(payload)"
-
-  echo "$output"
-
-  [ "$status" -eq 0 ]
-}
-
-@test "cleanup" {
-  run /engine/bin/cleanup "$(payload)"
+@test "compile" {
+  run /engine/bin/compile "$(payload)"
 
   echo "$output"
 
@@ -78,14 +70,22 @@ setup() {
   [ "$status" -eq 0 ]
 }
 
+@test "cleanup" {
+  run /engine/bin/cleanup "$(payload)"
+
+  echo "$output"
+
+  [ "$status" -eq 0 ]
+}
+
 @test "verify" {
   # remove the code dir
   rm -rf /tmp/code
 
-  # mv the live_dir to code_dir
-  mv /tmp/live /tmp/code
+  # mv the app_dir to code_dir
+  mv /tmp/app /tmp/code
 
-  # cd into the live code_dir
+  # cd into the app code_dir
   cd /tmp/code
 
   # start the server in the background

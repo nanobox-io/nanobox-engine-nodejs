@@ -14,6 +14,9 @@ nos_init "$@"
 # install node.js or io.js
 install_runtime
 
+# install build runtimes
+install_build_dependencies
+
 # disable progress bar for faster npm tasks
 npm_disable_progress
 

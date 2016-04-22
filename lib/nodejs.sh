@@ -3,8 +3,8 @@
 
 # Copy the code into the live directory which will be used to run the app
 publish_release() {
-  nos_print_bullet "Moving build into live code directory..."
-  rsync -a $(nos_code_dir)/ $(nos_live_dir)
+  nos_print_bullet "Moving code into app directory..."
+  rsync -a $(nos_code_dir)/ $(nos_app_dir)
 }
 
 # Determine the nodejs runtime to install. This will first check
@@ -38,6 +38,17 @@ package_json_runtime() {
 # Install the nodejs runtime.
 install_runtime() {
   nos_install "$(runtime)"
+}
+
+# Install dependencies to compile a nodejs app
+install_build_dependencies() {
+  nos_install "python27"
+}
+
+# Uninstall build dependencies
+uninstall_build_dependencies() {
+  nos_uninstall "python27"
+  nos_purge_orphaned_deps
 }
 
 # set the runtime in a file inside of node_modules so that if the
