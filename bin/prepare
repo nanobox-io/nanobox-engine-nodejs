@@ -20,15 +20,6 @@ install_build_dependencies
 # disable progress bar for faster npm tasks
 npm_disable_progress
 
-# run npm rebuild only if the runtime has changed
-npm_rebuild
-
-# run npm install
-npm_install
-
-# run npm prune
-npm_prune
-
 # add node_modules/.bin to the PATH
 persist_npm_bin_to_path
 

@@ -2,6 +2,22 @@
 # -*- mode: bash; tab-width: 2; -*-
 # vim: ts=2 sw=2 ft=bash noet
 
-# nothing to compile, but perhaps consider bundle install here?
+# source the Nos framework
+. /opt/nos/common.sh
+
+# initialize Nos with the original arguments
+nos_init "$@"
+
+# source common lib
+. ${engine_lib_dir}/nodejs.sh
+
+# run npm rebuild only if the runtime has changed
+npm_rebuild
+
+# run npm install
+npm_install
+
+# run npm prune
+npm_prune
 
 exit 0
