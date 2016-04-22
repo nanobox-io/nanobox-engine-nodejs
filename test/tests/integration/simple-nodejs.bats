@@ -62,16 +62,16 @@ setup() {
   [ "$status" -eq 0 ]
 }
 
-@test "pack" {
-  run /engine/bin/pack "$(payload)"
+@test "cleanup" {
+  run /engine/bin/cleanup "$(payload)"
 
   echo "$output"
 
   [ "$status" -eq 0 ]
 }
 
-@test "cleanup" {
-  run /engine/bin/cleanup "$(payload)"
+@test "release" {
+  run /engine/bin/release "$(payload)"
 
   echo "$output"
 
