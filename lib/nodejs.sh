@@ -48,7 +48,6 @@ install_build_dependencies() {
 # Uninstall build dependencies
 uninstall_build_dependencies() {
   nos_uninstall "python27"
-  nos_purge_orphaned_deps
 }
 
 # set the runtime in a file inside of node_modules so that if the
