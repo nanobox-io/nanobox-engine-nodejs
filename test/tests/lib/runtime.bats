@@ -1,7 +1,7 @@
 # Test the runtime selection
 
 # source the Nos framework
-. /opt/nos/common.sh
+. /opt/nanobox/nos/common.sh
 
 # source the nos test helper
 . util/nos.sh
