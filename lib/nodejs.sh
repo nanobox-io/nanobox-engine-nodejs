@@ -37,12 +37,7 @@ package_json_runtime() {
 
 # Install the nodejs runtime.
 install_runtime() {
-  nos_install "$(runtime)"
-}
-
-# Install dependencies to compile a nodejs app
-install_build_dependencies() {
-  nos_install "python27"
+  nos_install "$(runtime)" "python27"
 }
 
 # Uninstall build dependencies
@@ -73,12 +68,6 @@ check_runtime() {
   else
     echo "true"
   fi
-}
-
-# npm is significantly faster when not trying to report progress.
-npm_disable_progress() {
-  ( cd $(nos_code_dir)
-    npm set progress=false )
 }
 
 # If the package.json has changed since the previous deploy it should
