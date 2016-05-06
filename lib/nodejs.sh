@@ -49,7 +49,6 @@ uninstall_build_dependencies() {
 # runtime changes between deploys, we can blast the node_modules
 # cache and build fresh.
 persist_runtime() {
-  echo "$(nos_code_dir)/node_modules"
   if [[ -d $(nos_code_dir)/node_modules ]]; then
     echo "$(runtime)" > $(nos_code_dir)/node_modules/runtime
   fi
