@@ -76,7 +76,7 @@ npm_rebuild() {
   if [[ "$(check_runtime)" = "false" ]]; then
     cd $(nos_code_dir)
     nos_run_subprocess "rebuilding npm modules" "npm rebuild"
-    cd -
+    cd - > /dev/null
   fi
 }
 
@@ -86,7 +86,7 @@ npm_install() {
 
     cd $(nos_code_dir)
     nos_run_subprocess "installing npm modules" "npm install"
-    cd -
+    cd - > /dev/null
   fi
 }
 
@@ -96,7 +96,7 @@ npm_prune() {
 
     cd $(nos_code_dir)
     nos_run_subprocess "pruning npm modules" "npm prune"
-    cd -
+    cd - > /dev/null
   fi
 }
 
