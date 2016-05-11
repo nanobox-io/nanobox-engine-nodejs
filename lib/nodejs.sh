@@ -74,7 +74,7 @@ check_runtime() {
 npm_rebuild() {
   if [[ "$(check_runtime)" = "false" ]]; then
     cd $(nos_code_dir)
-    nos_run_process "rebuilding npm modules" "npm rebuild"
+    nos_run_process "Rebuilding npm modules" "npm rebuild"
     cd - > /dev/null
   fi
 }
@@ -84,7 +84,7 @@ npm_install() {
   if [[ -f $(nos_code_dir)/package.json ]]; then
 
     cd $(nos_code_dir)
-    nos_run_process "installing npm modules" "npm install"
+    nos_run_process "Installing npm modules" "npm install"
     cd - > /dev/null
   fi
 }
@@ -94,7 +94,7 @@ npm_prune() {
   if [[ -f $(nos_code_dir)/package.json ]]; then
 
     cd $(nos_code_dir)
-    nos_run_process "pruning npm modules" "npm prune"
+    nos_run_process "Pruning npm modules" "npm prune"
     cd - > /dev/null
   fi
 }
