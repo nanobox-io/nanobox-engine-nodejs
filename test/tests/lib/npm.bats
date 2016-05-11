@@ -26,11 +26,11 @@ setup() {
   npm_installed="true"
   npm_ran="false"
 
-  stub_and_eval "nos_run_subprocess" "npm_ran=\"true\""
+  stub_and_eval "nos_run_process" "npm_ran=\"true\""
 
   npm_install
 
-  restore "nos_run_subprocess"
+  restore "nos_run_process"
   npm_installed="false"
 
   [ "$npm_ran" = "false" ]
@@ -47,11 +47,11 @@ END
 
   npm_ran="false"
 
-  stub_and_eval "nos_run_subprocess" "npm_ran=\"true\""
+  stub_and_eval "nos_run_process" "npm_ran=\"true\""
 
   npm_install
 
-  restore "nos_run_subprocess"
+  restore "nos_run_process"
   npm_installed="false"
 
   [ "$npm_ran" = "false" ]
@@ -68,14 +68,14 @@ END
 
   npm_ran="false"
 
-  stub_and_eval "nos_run_subprocess" "npm_ran=\"true\""
+  stub_and_eval "nos_run_process" "npm_ran=\"true\""
 
   mkdir -p /tmp/code
   touch /tmp/code/package.json
 
   npm_install
 
-  restore "nos_run_subprocess"
+  restore "nos_run_process"
 
   [ "$npm_ran" = "true" ]
 }
@@ -93,12 +93,12 @@ END
 
   stub_and_echo "check_runtime" "true"
 
-  stub_and_eval "nos_run_subprocess" "rebuild_ran=\"true\""
+  stub_and_eval "nos_run_process" "rebuild_ran=\"true\""
 
   npm_rebuild
 
   restore "check_runtime"
-  restore "nos_run_subprocess"
+  restore "nos_run_process"
 
   [ "$rebuild_ran" = "false" ]
 }
@@ -116,12 +116,12 @@ END
 
   stub_and_echo "check_runtime" "false"
 
-  stub_and_eval "nos_run_subprocess" "rebuild_ran=\"true\""
+  stub_and_eval "nos_run_process" "rebuild_ran=\"true\""
 
   npm_rebuild
 
   restore "check_runtime"
-  restore "nos_run_subprocess"
+  restore "nos_run_process"
 
   [ "$rebuild_ran" = "true" ]
 }
