@@ -31,14 +31,27 @@ Specifies which Node.js runtime and version to use. The following runtimes are a
 - nodejs-4.0
 - nodejs-4.1
 - nodejs-4.2
+- nodejs-4.3
+- nodejs-4.4
 - nodejs-5.0
 - nodejs-5.1
+- nodejs-5.2
+- nodejs-5.3
+- nodejs-5.4
+- nodejs-5.5
+- nodejs-5.6
+- nodejs-5.7
+- nodejs-5.8
+- nodejs-5.9
+- nodejs-6.0
+- nodejs-6.1
+- nodejs-6.2
 - iojs-2.3
 
 ```yaml
 code.build:
   config:
-    runtime: nodejs-4.2
+    runtime: nodejs-4.4
 ```
 
 ---
