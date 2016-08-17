@@ -2,10 +2,17 @@
 
 This is a Node.js engine for running node apps with [Nanobox](http://nanobox.io).
 
-## App Detection
-To detect a Node.js app, this engine looks for  `package.json`. If that exists, it then looks for a `server.js`.
+## Usage
+To use the Node.js engine, specify `nodejs` as your `engine` in your boxfile.yml
+
+```
+code.build:
+  engine: nodejs
+```
 
 ## Build Process
+When [running a build](https://docs.nanboox.io/cli/build/), this engine compiles code by doing the following:
+
 - `npm install`
 - `npm prune`
 - If the version of node has changed between deploys, the engine runs `npm rebuild`
@@ -17,12 +24,12 @@ This engine exposes configuration options through the [Boxfile](http://docs.nano
 ```yaml
 code.build:
   config:
-    runtime: nodejs-4.2
+    runtime: nodejs-4.4
 ```
 
 ---
 
-#### nodejs_runtime
+#### runtime
 Specifies which Node.js runtime and version to use. The following runtimes are available:
 
 - nodejs-0.8
