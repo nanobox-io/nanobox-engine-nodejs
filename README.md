@@ -5,7 +5,7 @@ This is a Node.js engine for running node apps with [Nanobox](http://nanobox.io)
 ## Usage
 To use the Node.js engine, specify `nodejs` as your `engine` in your boxfile.yml
 
-```
+```yaml
 code.build:
   engine: nodejs
 ```
