@@ -3,7 +3,7 @@
 # vim: ts=2 sw=2 ft=bash noet
 
 # source the Nos framework
-. /opt/nos/common.sh
+. /opt/nanobox/nos/common.sh
 
 # initialize Nos with the original arguments
 nos_init "$@"
@@ -11,27 +11,13 @@ nos_init "$@"
 # source common lib
 . ${engine_lib_dir}/nodejs.sh
 
-nos_print_process_start "Installing packages"
-
 # install node.js or io.js
-nodejs_install_runtime
+install_runtime
 
-# run npm rebuild only if the runtime has changed
-nodejs_npm_rebuild
-
-# install bower if a Bower.json file is detected
-nodejs_install_bower
-
-# persist all environment variables 
-nos_persist_evars
-
-# run npm install
-nodejs_npm_install
-
-# run bower install if a Bower.json file is detected
-nodejs_bower_install
+# add node_modules/.bin to the PATH
+persist_npm_bin_to_path
 
 # set the node.js runtime in cache
-nodejs_set_runtime
+persist_runtime
 
 exit 0

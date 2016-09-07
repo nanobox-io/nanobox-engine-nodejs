@@ -1,11 +1,18 @@
 # Node.js
 
-This is a generic Node.js engine used to launch Node.js web and worker services when using [Nanobox](http://nanobox.io).
+This is a Node.js engine for running node apps with [Nanobox](http://nanobox.io).
 
-## App Detection
-To detect a Node.js app, this engine looks for a `package.json`. If that exists, it then looks for a `server.js`.
+## Usage
+To use the Node.js engine, specify `nodejs` as your `engine` in your boxfile.yml
+
+```yaml
+code.build:
+  engine: nodejs
+```
 
 ## Build Process
+When [running a build](https://docs.nanboox.io/cli/build/), this engine compiles code by doing the following:
+
 - `npm install`
 - `npm prune`
 - If the version of node has changed between deploys, the engine runs `npm rebuild`
@@ -15,13 +22,14 @@ This engine exposes configuration options through the [Boxfile](http://docs.nano
 
 #### Overview of Boxfile Configuration Options
 ```yaml
-build:
-  nodejs_runtime: nodejs-4.2
+code.build:
+  config:
+    runtime: nodejs-4.4
 ```
 
 ---
 
-#### nodejs_runtime
+#### runtime
 Specifies which Node.js runtime and version to use. The following runtimes are available:
 
 - nodejs-0.8
@@ -30,13 +38,27 @@ Specifies which Node.js runtime and version to use. The following runtimes are a
 - nodejs-4.0
 - nodejs-4.1
 - nodejs-4.2
+- nodejs-4.3
+- nodejs-4.4
 - nodejs-5.0
 - nodejs-5.1
+- nodejs-5.2
+- nodejs-5.3
+- nodejs-5.4
+- nodejs-5.5
+- nodejs-5.6
+- nodejs-5.7
+- nodejs-5.8
+- nodejs-5.9
+- nodejs-6.0
+- nodejs-6.1
+- nodejs-6.2
 - iojs-2.3
 
 ```yaml
-build:
-  nodejs_runtime: nodejs-4.2
+code.build:
+  config:
+    runtime: nodejs-4.4
 ```
 
 ---
