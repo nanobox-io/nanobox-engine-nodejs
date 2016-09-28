@@ -11,6 +11,12 @@ nos_init "$@"
 # source common lib
 . ${engine_lib_dir}/nodejs.sh
 
+# install node.js or io.js
+install_runtime
+
+# add node_modules/.bin to the PATH
+persist_npm_bin_to_path
+
 # run npm rebuild only if the runtime has changed
 npm_rebuild
 
@@ -19,5 +25,8 @@ npm_install
 
 # run npm prune
 npm_prune
+
+# set the node.js runtime in cache
+persist_runtime
 
 exit 0

@@ -37,12 +37,12 @@ package_json_runtime() {
 
 # Install the nodejs runtime.
 install_runtime() {
-  nos_install "$(runtime)" "python27"
+  nos_install "$(runtime)" "python"
 }
 
 # Uninstall build dependencies
 uninstall_build_dependencies() {
-  nos_uninstall "python27"
+  nos_uninstall "python"
 }
 
 # set the runtime in a file inside of node_modules so that if the

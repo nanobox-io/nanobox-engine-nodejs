@@ -17,5 +17,5 @@ docker run \
   -e "PATH=$(path)" \
   --volume=${test_dir}/:/test \
   --volume=${engine_dir}/:/engine \
-  nanobox/build:v1 \
+  nanobox/build \
   /bin/bash
