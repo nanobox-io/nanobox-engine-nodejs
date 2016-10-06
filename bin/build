@@ -12,7 +12,7 @@ nos_init "$@"
 . ${engine_lib_dir}/nodejs.sh
 
 # install node.js or io.js
-install_runtime
+install_runtime_packages
 
 # add node_modules/.bin to the PATH
 persist_npm_bin_to_path

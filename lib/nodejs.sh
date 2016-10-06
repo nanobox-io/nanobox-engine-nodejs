@@ -35,14 +35,43 @@ package_json_runtime() {
   echo "false"
 }
 
-# Install the nodejs runtime.
-install_runtime() {
-  nos_install "$(runtime)" "python"
+# Install the nodejs runtime along with any dependencies.
+install_runtime_packages() {
+  pkgs=("$(runtime)" "python")
+  
+  # add any client dependencies
+  pkgs+=("$(query_dependencies)")
+
+  nos_install ${pkgs[@]}
 }
 
 # Uninstall build dependencies
 uninstall_build_dependencies() {
   nos_uninstall "python"
+}
+
+# compiles a list of dependencies that will need to be installed
+query_dependencies() {
+  deps=()
+
+  # mysql
+  if [[ `grep 'mysql' $(nos_code_dir)/package.json` ]]; then
+    deps+=(mysql-client)
+  fi
+  # memcache
+  if [[ `grep 'memcache' $(nos_code_dir)/package.json` ]]; then
+    deps+=(libmemcached)
+  fi
+  # postgres
+  if [[ `grep 'postgres' $(nos_code_dir)/package.json` ]]; then
+    deps+=(postgresql94-client)
+  fi
+  # redis
+  if [[ `grep 'redis\|spade\|rebridge' $(nos_code_dir)/package.json` ]]; then
+    deps+=(redis)
+  fi
+  
+  echo "${deps[@]}"
 }
 
 # set the runtime in a file inside of node_modules so that if the
