@@ -80,7 +80,7 @@ END
 
   stub_and_eval "nos_install" "called=\"true\""
 
-  install_runtime
+  install_runtime_packages
 
   restore "is_node_installed"
   restore "nos_install"
