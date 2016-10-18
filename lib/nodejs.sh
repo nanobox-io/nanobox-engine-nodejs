@@ -35,6 +35,19 @@ package_json_runtime() {
   echo "false"
 }
 
+# Determine which dependency manager to use (yarn/npm)
+dep_manager() {
+  echo $(nos_validate \
+    "$(nos_payload "config_dep_manager")" \
+    "string" "$(default_dep_manager)")
+}
+
+# Use yarn as the default dep manager
+default_dep_manager() {
+  # todo: probably need to revert to npm if using an old version
+  echo "yarn"
+}
+
 # Install the nodejs runtime along with any dependencies.
 install_runtime_packages() {
   pkgs=("$(runtime)" "python")
@@ -95,6 +108,77 @@ check_runtime() {
     echo "false"
   else
     echo "true"
+  fi
+}
+
+# installs npm deps via yarn or npm
+install_npm_deps() {
+  # if yarn is available, let's use that
+  if [[ "$(dep_manager)" = "yarn" ]]; then
+    yarn_install
+  else # fallback to npm (slow)
+    npm_install
+  fi
+}
+
+# install yarn as a global package
+install_yarn() {
+  # short-circuit if yarn is already installed
+  if [[ -f $(nos_data_dir)/bin/yarn ]]; then
+    return
+  fi
+  
+  # short-circuit if we don't have a package.json file
+  if [[ ! -f $(nos_code_dir)/package.json ]]; then
+    return
+  fi
+  
+  # short-circuit if yarn isn't wanted
+  if [[ ! "$(dep_manager)" = "yarn" ]]; then
+    return
+  fi
+
+  nos_run_process "Installing yarn" "npm install -g yarn"
+  
+  # generate the directories
+  mkdir -p $(nos_code_dir)/node_modules/.yarn
+  mkdir -p $(nos_code_dir)/node_modules/.yarn-config
+  mkdir -p $(nos_code_dir)/node_modules/.yarn-cache
+  
+  # symlink to cache_locations
+  ln -sf $(nos_code_dir)/node_modules/.yarn ${HOME}/.yarn
+  ln -sf $(nos_code_dir)/node_modules/.yarn-config ${HOME}/.yarn-config
+  ln -sf $(nos_code_dir)/node_modules/.yarn-cache ${HOME}/.yarn-cache
+  
+  # generate a profile to setup the config in dev console
+  generate_yarn_profile
+}
+
+# Create a profile script to setup links to the yarn configuration
+generate_yarn_profile() {
+  mkdir -p $(nos_data_dir)/etc/profile.d/
+  nos_template \
+    "profile.d/yarn.sh" \
+    "$(nos_data_dir)/etc/profile.d/yarn.sh" \
+    "$(profile_payload)"
+}
+
+# payload for the yarn profile template
+profile_payload() {
+  cat <<-END
+{
+  code_dir: "$(nos_code_dir)"
+}
+END
+}
+
+# install dependencies via yarn
+yarn_install() {
+  if [[ -f $(nos_code_dir)/package.json ]]; then
+
+    cd $(nos_code_dir)
+    nos_run_process "Installing npm modules" "yarn"
+    cd - > /dev/null
   fi
 }
 
