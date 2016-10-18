@@ -20,7 +20,7 @@ install_yarn
 # add node_modules/.bin to the PATH
 persist_npm_bin_to_path
 
-# run npm install
-npm_install
+# run yarn or npm install
+install_npm_deps
 
 exit 0
