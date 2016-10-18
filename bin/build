@@ -17,8 +17,6 @@ install_runtime_packages
 # install yarn dep manager
 install_yarn
 
-exit 1
-
 # add node_modules/.bin to the PATH
 persist_npm_bin_to_path
 
