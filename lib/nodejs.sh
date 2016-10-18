@@ -141,14 +141,14 @@ install_yarn() {
   nos_run_process "Installing yarn" "npm install -g yarn"
   
   # generate the directories
-  mkdir -p $(nos_code_dir)/node_modules/.yarn
-  mkdir -p $(nos_code_dir)/node_modules/.yarn-config
-  mkdir -p $(nos_code_dir)/node_modules/.yarn-cache
+  mkdir -p $(nos_code_dir)/.yarn/yarn
+  mkdir -p $(nos_code_dir)/.yarn/yarn-config
+  mkdir -p $(nos_code_dir)/.yarn/yarn-cache
   
   # symlink to cache_locations
-  ln -sf $(nos_code_dir)/node_modules/.yarn ${HOME}/.yarn
-  ln -sf $(nos_code_dir)/node_modules/.yarn-config ${HOME}/.yarn-config
-  ln -sf $(nos_code_dir)/node_modules/.yarn-cache ${HOME}/.yarn-cache
+  ln -sf $(nos_code_dir)/.yarn/yarn ${HOME}/.yarn
+  ln -sf $(nos_code_dir)/.yarn/yarn-config ${HOME}/.yarn-config
+  ln -sf $(nos_code_dir)/.yarn/yarn-cache ${HOME}/.yarn-cache
   
   # generate a profile to setup the config in dev console
   generate_yarn_profile

@@ -6,6 +6,7 @@ cat <<-END
 code.build:
   lib_dirs:
     - node_modules
+    - .yarn
 END
 
 exit 0
