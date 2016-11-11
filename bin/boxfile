@@ -8,7 +8,7 @@
 set -e
 
 cat <<END
-code.build:
+run.config:
   lib_dirs:
     - node_modules
 END
