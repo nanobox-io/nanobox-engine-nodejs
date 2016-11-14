@@ -9,6 +9,6 @@ set -e
 
 cat <<END
 run.config:
-  lib_dirs:
+  cache_dirs:
     - node_modules
 END
