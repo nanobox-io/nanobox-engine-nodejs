@@ -127,8 +127,3 @@ npm_prune() {
     cd - > /dev/null
   fi
 }
-
-# ensure node_modules/.bin is persisted to the PATH
-persist_npm_bin_to_path() {
-  nos_persist_evar "PATH" "$(nos_code_dir)/node_modules/.bin"
-}

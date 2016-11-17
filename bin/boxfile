@@ -11,4 +11,6 @@ cat <<END
 run.config:
   cache_dirs:
     - node_modules
+  extra_path_dirs:
+    - node_modules/.bin
 END
