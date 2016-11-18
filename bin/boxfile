@@ -7,10 +7,19 @@
 # exit if anything fails
 set -e
 
+# source the Nos framework
+. /opt/nanobox/nos/common.sh
+
+# initialize Nos with the original arguments
+nos_init "$@"
+
+# source common lib
+. ${engine_lib_dir}/nodejs.sh
+
 cat <<END
 run.config:
   cache_dirs:
     - node_modules
   extra_path_dirs:
-    - node_modules/.bin
+    - $(nos_code_dir)/node_modules/.bin
 END
