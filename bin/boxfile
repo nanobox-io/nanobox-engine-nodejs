@@ -20,6 +20,7 @@ cat <<END
 run.config:
   cache_dirs:
     - node_modules
+    - .yarn
   extra_path_dirs:
     - $(nos_code_dir)/node_modules/.bin
 END

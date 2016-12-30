@@ -21,21 +21,6 @@ setup() {
   nos_reset_payload
 }
 
-@test "npm install will not run more than once" {
-
-  npm_installed="true"
-  npm_ran="false"
-
-  stub_and_eval "nos_run_process" "npm_ran=\"true\""
-
-  npm_install
-
-  restore "nos_run_process"
-  npm_installed="false"
-
-  [ "$npm_ran" = "false" ]
-}
-
 @test "npm install will not run without a package.json file" {
 
   nos_init "$(cat <<-END
@@ -57,7 +42,7 @@ END
   [ "$npm_ran" = "false" ]
 }
 
-@test "npm install will run once if a package.json file is present" {
+@test "npm install will run if a package.json file is present" {
 
   nos_init "$(cat <<-END
 {
@@ -80,7 +65,7 @@ END
   [ "$npm_ran" = "true" ]
 }
 
-@test "npm will not rebuild if the runtime hasn't changed" {
+@test "yarn install will not run without a package.json file" {
 
   nos_init "$(cat <<-END
 {
@@ -89,21 +74,19 @@ END
 END
 )"
 
-  rebuild_ran="false"
+  yarn_ran="false"
 
-  stub_and_echo "check_runtime" "true"
+  stub_and_eval "nos_run_process" "yarn_ran=\"true\""
 
-  stub_and_eval "nos_run_process" "rebuild_ran=\"true\""
+  yarn_install
 
-  npm_rebuild
-
-  restore "check_runtime"
   restore "nos_run_process"
+  yarn_installed="false"
 
-  [ "$rebuild_ran" = "false" ]
+  [ "$yarn_ran" = "false" ]
 }
 
-@test "npm will rebuild if the runtime has changed" {
+@test "yarn install will run if a package.json file is present" {
 
   nos_init "$(cat <<-END
 {
@@ -112,16 +95,16 @@ END
 END
 )"
 
-  rebuild_ran="false"
+  yarn_ran="false"
 
-  stub_and_echo "check_runtime" "false"
+  stub_and_eval "nos_run_process" "yarn_ran=\"true\""
 
-  stub_and_eval "nos_run_process" "rebuild_ran=\"true\""
+  mkdir -p /tmp/code
+  touch /tmp/code/package.json
 
-  npm_rebuild
+  yarn_install
 
-  restore "check_runtime"
   restore "nos_run_process"
 
-  [ "$rebuild_ran" = "true" ]
+  [ "$yarn_ran" = "true" ]
 }
