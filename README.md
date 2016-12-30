@@ -11,11 +11,9 @@ run.config:
 ```
 
 ## Build Process
-When [running a build](https://docs.nanboox.io/cli/build/), this engine compiles code by doing the following:
+When [running your app](https://docs.nanboox.io/cli/run/), this engine compiles code by doing the following:
 
-- `npm install`
-- `npm prune`
-- If the version of node has changed between deploys, the engine runs `npm rebuild`
+- `yarn install`
 
 ## Configuration Options
 This engine exposes configuration options through the [Boxfile](http://docs.nanobox.io/boxfile/), a yaml config file used to provision and configure your app's infrastructure when using Nanobox.
@@ -41,6 +39,8 @@ Specifies which Node.js runtime and version to use. The following runtimes are a
 - nodejs-4.2
 - nodejs-4.3
 - nodejs-4.4
+- nodejs-4.5
+- nodejs-4.6
 - nodejs-5.0
 - nodejs-5.1
 - nodejs-5.2
@@ -51,9 +51,20 @@ Specifies which Node.js runtime and version to use. The following runtimes are a
 - nodejs-5.7
 - nodejs-5.8
 - nodejs-5.9
+- nodejs-5.10
+- nodejs-5.11
+- nodejs-5.12
 - nodejs-6.0
 - nodejs-6.1
 - nodejs-6.2
+- nodejs-6.3
+- nodejs-6.4
+- nodejs-6.5
+- nodejs-6.6
+- nodejs-6.7
+- nodejs-6.8
+- nodejs-6.9
+- nodejs-7.0
 - iojs-2.3
 
 ```yaml
@@ -65,12 +76,12 @@ run.config:
 ---
 
 #### dep_manager
-Specifies whether the engine should use npm or yarn to fetch node modules. Defaults to yarn
+Specifies whether the engine should use npm or yarn to fetch node modules. Defaults to `yarn`.
 
 ```yaml
 run.config:
   engine.config:
-    dep_manager: npm
+    dep_manager: yarn
 ```
 
 ---
