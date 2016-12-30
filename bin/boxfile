@@ -1,12 +1,26 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # -*- mode: bash; tab-width: 2; -*-
 # vim: ts=2 sw=2 ft=bash noet
 
-cat <<-END
-code.build:
-  lib_dirs:
+# $1 = payload JSON
+
+# exit if anything fails
+set -e
+
+# source the Nos framework
+. /opt/nanobox/nos/common.sh
+
+# initialize Nos with the original arguments
+nos_init "$@"
+
+# source common lib
+. ${engine_lib_dir}/nodejs.sh
+
+cat <<END
+run.config:
+  cache_dirs:
     - node_modules
     - .yarn
+  extra_path_dirs:
+    - $(nos_code_dir)/node_modules/.bin
 END
-
-exit 0

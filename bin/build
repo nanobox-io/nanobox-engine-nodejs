@@ -14,6 +14,7 @@ nos_init "$@"
 # install node.js or io.js
 install_runtime_packages
 
+<<<<<<< HEAD
 # install yarn dep manager
 install_yarn
 
@@ -22,5 +23,18 @@ persist_npm_bin_to_path
 
 # run yarn or npm install
 install_npm_deps
+=======
+# run npm rebuild only if the runtime has changed
+npm_rebuild
+
+# run npm install
+npm_install
+
+# run npm prune
+npm_prune
+
+# set the node.js runtime in cache
+persist_runtime
+>>>>>>> master
 
 exit 0

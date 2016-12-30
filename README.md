@@ -6,7 +6,7 @@ This is a Node.js engine for running node apps with [Nanobox](http://nanobox.io)
 To use the Node.js engine, specify `nodejs` as your `engine` in your boxfile.yml
 
 ```yaml
-code.build:
+run.config:
   engine: nodejs
 ```
 
@@ -22,8 +22,8 @@ This engine exposes configuration options through the [Boxfile](http://docs.nano
 
 #### Overview of Boxfile Configuration Options
 ```yaml
-code.build:
-  config:
+run.config:
+  engine.config:
     runtime: nodejs-4.4
 ```
 
@@ -56,8 +56,8 @@ Specifies which Node.js runtime and version to use. The following runtimes are a
 - iojs-2.3
 
 ```yaml
-code.build:
-  config:
+run.config:
+  engine.config:
     runtime: nodejs-4.4
 ```
 
