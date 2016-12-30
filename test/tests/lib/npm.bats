@@ -57,7 +57,7 @@ END
   [ "$npm_ran" = "false" ]
 }
 
-@test "npm install will run once if a package.json file is present" {
+@test "npm install will run if a package.json file is present" {
 
   nos_init "$(cat <<-END
 {
@@ -78,50 +78,4 @@ END
   restore "nos_run_process"
 
   [ "$npm_ran" = "true" ]
-}
-
-@test "npm will not rebuild if the runtime hasn't changed" {
-
-  nos_init "$(cat <<-END
-{
-  "code_dir": "/tmp/code"
-}
-END
-)"
-
-  rebuild_ran="false"
-
-  stub_and_echo "check_runtime" "true"
-
-  stub_and_eval "nos_run_process" "rebuild_ran=\"true\""
-
-  npm_rebuild
-
-  restore "check_runtime"
-  restore "nos_run_process"
-
-  [ "$rebuild_ran" = "false" ]
-}
-
-@test "npm will rebuild if the runtime has changed" {
-
-  nos_init "$(cat <<-END
-{
-  "code_dir": "/tmp/code"
-}
-END
-)"
-
-  rebuild_ran="false"
-
-  stub_and_echo "check_runtime" "false"
-
-  stub_and_eval "nos_run_process" "rebuild_ran=\"true\""
-
-  npm_rebuild
-
-  restore "check_runtime"
-  restore "nos_run_process"
-
-  [ "$rebuild_ran" = "true" ]
 }
