@@ -21,6 +21,7 @@ This engine exposes configuration options through the [Boxfile](http://docs.nano
 #### Overview of Boxfile Configuration Options
 ```yaml
 run.config:
+  engine: nodejs
   engine.config:
     runtime: nodejs-4.4
     dep_manager: yarn
@@ -69,8 +70,9 @@ Specifies which Node.js runtime and version to use. The following runtimes are a
 
 ```yaml
 run.config:
+  engine: nodejs
   engine.config:
-    runtime: nodejs-4.4
+    runtime: nodejs-6.2
 ```
 
 ---
