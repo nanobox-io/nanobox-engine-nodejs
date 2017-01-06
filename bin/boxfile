@@ -24,3 +24,9 @@ run.config:
   extra_path_dirs:
     - $(nos_code_dir)/node_modules/.bin
 END
+if [[ $(grep -c build_triggers /opt/nanobox/hooks/lib/boxfile.rb) -gt 1 ]]; then
+	cat <<-END
+	  build_triggers:
+	    - package.json
+	END
+fi
