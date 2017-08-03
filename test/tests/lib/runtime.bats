@@ -45,7 +45,7 @@ setup() {
 
   restore "package_json_runtime"
 
-  [ "$default" = "nodejs-6.2" ]
+  [ "$default" = "nodejs-6.11" ]
 }
 
 @test "runtime is chosen from the Boxfile if present" {
