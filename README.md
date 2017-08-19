@@ -25,6 +25,7 @@ run.config:
   engine.config:
     runtime: nodejs-4.4
     dep_manager: yarn
+    python_version: python-2.7
 ```
 
 ---
@@ -85,6 +86,22 @@ run.config:
   engine.config:
     dep_manager: yarn
 ```
+
+#### python_version
+Specifies the version of Python to install with the following available values:
+
+- python-2.7
+- python-3.4
+- python-3.5
+- python-3.6 (Default)
+
+```yaml
+run.config:
+  engine.config:
+    python_version: python-2.7
+```
+
+
 
 ---
 

@@ -27,6 +27,20 @@ default_runtime() {
   fi
 }
 
+# Determine the python runtime to install. This will first check
+# within the boxfile.yml, then will rely on python_default_runtime to
+# provide a sensible default
+python_version() {
+  echo $(nos_validate \
+    "$(nos_payload "config_python_version")" \
+    "string" "$(default_python_version)")
+}
+
+# Provide a default python version.
+default_python_version() {
+  echo "python-3.6"
+}
+
 # todo: extract the contents of package.json
 #   Will need https://stedolan.github.io/jq/
 #   https://github.com/heroku/heroku-buildpack-nodejs/blob/master/lib/json.sh#L17
@@ -49,7 +63,7 @@ default_dep_manager() {
 
 # Install the nodejs runtime along with any dependencies.
 install_runtime_packages() {
-  pkgs=("$(runtime)" "python")
+  pkgs=("$(runtime)" "$(python_version)")
   
   # add any client dependencies
   pkgs+=("$(query_dependencies)")
@@ -59,7 +73,7 @@ install_runtime_packages() {
 
 # Uninstall build dependencies
 uninstall_build_dependencies() {
-  nos_uninstall "python"
+  nos_uninstall "$(python_version)"
 }
 
 # compiles a list of dependencies that will need to be installed
