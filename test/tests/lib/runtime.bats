@@ -87,3 +87,26 @@ END
 
   [ "$called" = "true" ]
 }
+
+@test "default python_version falls back to a hard-coded default" {
+
+  python_version=$(default_python_version)
+
+  [ "$python_version" = "python-3.6" ]
+}
+
+@test "python_version is chosen from the Boxfile if present" {
+
+    nos_init "$(cat <<-END
+{
+  "config": {
+    "python_version": "python-2.7"
+  }
+}
+END
+)"
+
+  python_version=$(python_version)
+
+  [ "$python_version" = "python-2.7" ]
+}
