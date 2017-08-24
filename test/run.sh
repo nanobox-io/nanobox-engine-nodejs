@@ -52,6 +52,7 @@ docker run \
   -e "PATH=$(path)" \
   --volume=${test_dir}/:/test \
   --volume=${engine_dir}/:/engine \
+  --rm \
   nanobox/build \
   /test/util/bats/bin/bats \
     /test/tests/${file} \
