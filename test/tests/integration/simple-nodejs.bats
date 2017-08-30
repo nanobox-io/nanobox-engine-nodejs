@@ -72,7 +72,7 @@ setup() {
 }
 
 @test "cleanup" {
-  if [[ ! -f /engine/bin/compile ]]; then
+  if [[ ! -f /engine/bin/cleanup ]]; then
     skip "No compile script"
   fi
   run /engine/bin/cleanup "$(payload)"
