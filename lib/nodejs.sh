@@ -73,7 +73,8 @@ install_runtime_packages() {
 
 # Uninstall build dependencies
 uninstall_build_dependencies() {
-  nos_uninstall "$(python_version)"
+  # pkgin doesn't removing packages with partial version numbers.
+  nos_uninstall "python"
 }
 
 # compiles a list of dependencies that will need to be installed
