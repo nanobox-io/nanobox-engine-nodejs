@@ -67,6 +67,19 @@ Specifies which Node.js runtime and version to use. The following runtimes are a
 - nodejs-6.8
 - nodejs-6.9
 - nodejs-7.0
+- nodejs-7.1
+- nodejs-7.2
+- nodejs-7.3
+- nodejs-7.4
+- nodejs-7.5
+- nodejs-7.7
+- nodejs-7.8
+- nodejs-7.9
+- nodejs-8.0
+- nodejs-8.1
+- nodejs-8.2
+- nodejs-8.4
+- nodejs-8.5
 - iojs-2.3
 
 ```yaml
