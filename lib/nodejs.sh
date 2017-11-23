@@ -21,7 +21,7 @@ default_runtime() {
   packagejs_runtime=$(package_json_runtime)
 
   if [[ "$packagejs_runtime" = "false" ]]; then
-    echo "nodejs-6.11"
+    echo "nodejs-8.9"
   else
     echo $packagejs_runtime
   fi
