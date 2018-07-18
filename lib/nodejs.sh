@@ -36,11 +36,6 @@ python_version() {
     "string" "$(default_python_version)")
 }
 
-# Provide a default python version.
-default_python_version() {
-  echo "python-3.6"
-}
-
 # todo: extract the contents of package.json
 #   Will need https://stedolan.github.io/jq/
 #   https://github.com/heroku/heroku-buildpack-nodejs/blob/master/lib/json.sh#L17
@@ -63,7 +58,7 @@ default_dep_manager() {
 
 # Install the nodejs runtime along with any dependencies.
 install_runtime_packages() {
-  pkgs=("$(runtime)" "$(python_version)")
+  pkgs=("$(runtime)")
   
   # add any client dependencies
   pkgs+=("$(query_dependencies)")
@@ -71,10 +66,15 @@ install_runtime_packages() {
   nos_install ${pkgs[@]}
 }
 
+# Install python2 into the system pkgsrc to avoid any conflicts with
+# the desired python version that the app may need
+install_system_python() {
+  nos_run_process "Installing python2 for node-gyp" "sudo /opt/gonano/bin/pkgin -y in python-2"
+}
+
 # Uninstall build dependencies
 uninstall_build_dependencies() {
-  # pkgin doesn't removing packages with partial version numbers.
-  nos_uninstall "python"
+  # nothing to uninstall here
 }
 
 # compiles a list of dependencies that will need to be installed
@@ -126,7 +126,7 @@ npm_install() {
   if [[ -f $(nos_code_dir)/package.json ]]; then
 
     cd $(nos_code_dir)
-    nos_run_process "Installing npm modules" "npm install"
+    nos_run_process "Installing npm modules" "npm install --python=/opt/gonano/bin/python"
     cd - > /dev/null
   fi
 }
