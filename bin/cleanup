@@ -12,6 +12,6 @@ nos_init "$@"
 . ${engine_lib_dir}/nodejs.sh
 
 # Remove build dependencies to ensure the build env is small
-uninstall_build_dependencies
+# uninstall_build_dependencies
 
 exit 0

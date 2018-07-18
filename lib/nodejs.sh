@@ -72,10 +72,10 @@ install_system_python() {
   nos_run_process "Installing python2 for node-gyp" "sudo /opt/gonano/bin/pkgin -y in python-2"
 }
 
-# Uninstall build dependencies
-uninstall_build_dependencies() {
-  # nothing to uninstall here
-}
+# # Uninstall build dependencies
+# uninstall_build_dependencies() {
+#   # nothing to uninstall here
+# }
 
 # compiles a list of dependencies that will need to be installed
 query_dependencies() {
