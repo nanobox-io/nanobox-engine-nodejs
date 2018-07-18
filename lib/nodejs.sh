@@ -116,7 +116,7 @@ yarn_install() {
   if [[ -f $(nos_code_dir)/package.json ]]; then
 
     cd $(nos_code_dir)
-    nos_run_process "Installing npm modules" "yarn"
+    nos_run_process "Installing npm modules" "npm_config_python=/opt/gonano/bin/python yarn"
     cd - > /dev/null
   fi
 }
@@ -126,7 +126,7 @@ npm_install() {
   if [[ -f $(nos_code_dir)/package.json ]]; then
 
     cd $(nos_code_dir)
-    nos_run_process "Installing npm modules" "npm install --python=/opt/gonano/bin/python"
+    nos_run_process "Installing npm modules" "npm_config_python=/opt/gonano/bin/python npm install"
     cd - > /dev/null
   fi
 }
