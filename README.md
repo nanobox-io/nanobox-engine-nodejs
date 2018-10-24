@@ -38,32 +38,26 @@ run.config:
 
 Specifies which Node.js runtime and version to use. The following runtimes are available:
 
-- nodejs-0.8.28
-- nodejs-0.10.40
-- nodejs-0.12.7
-- nodejs-4.2.6
-- nodejs-4.8.4
-- nodejs-5.12.0nb4
-- nodejs-6.11.4
-- nodejs-7.10.1
-- nodejs-8.6.0
-- nodejs-8.9.0
-- nodejs-8.9.1
-- nodejs-8.9.3
-- nodejs-8.9.4
-- nodejs-8.10.0
-- nodejs-8.11.0
-- nodejs-8.11.1
-- nodejs-8.11.3
-- nodejs-9.2.0
-- nodejs-9.3.0
-- nodejs-9.5.0
-- nodejs-9.6.0
-- nodejs-9.8.0
-- nodejs-9.10.0
-- nodejs-9.11.1
-- nodejs-9.11.2
-- nodejs-10.4.1
+- nodejs-0.8
+- nodejs-0.10
+- nodejs-0.12
+- nodejs-4.2
+- nodejs-4.8
+- nodejs-5.12
+- nodejs-6.11
+- nodejs-7.10
+- nodejs-8.6
+- nodejs-8.9
+- nodejs-8.10
+- nodejs-8.11
+- nodejs-9.2
+- nodejs-9.3
+- nodejs-9.5
+- nodejs-9.6
+- nodejs-9.8
+- nodejs-9.10
+- nodejs-9.11
+- nodejs-10.4
 
 ```yaml
 run.config:
